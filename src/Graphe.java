@@ -1,6 +1,8 @@
+/**
+ * Interface representative d'un graphe.
+ */
 public interface Graphe {
 
-    /**
-     * Test interface
-     */
+    boolean isVoisin(int i, int j);
+
 }
