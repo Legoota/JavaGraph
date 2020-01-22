@@ -1,3 +1,5 @@
+package graphe;
+
 public class Sommet {
 
     //public *** sommetsVoisins = new ***<int>

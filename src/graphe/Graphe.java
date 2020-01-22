@@ -1,3 +1,5 @@
+package graphe;
+
 /**
  * Interface representative d'un graphe.
  */

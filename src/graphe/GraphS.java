@@ -1,7 +1,9 @@
+package graphe;
+
 public class GraphS implements Graphe {
 
     /**
-     * Constructeur d'un Graphe utilisant des sommets.
+     * Constructeur d'un graphe.Graphe utilisant des sommets.
      */
     public GraphS(){
 
