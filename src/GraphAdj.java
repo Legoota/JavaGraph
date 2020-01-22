@@ -1,11 +1,15 @@
 public class GraphAdj implements Graphe {
 
-    public GraphAdj(int ordre){
+    private int[][] matrice;
 
+
+    public GraphAdj(int[][] matAdj){
+        this.matrice = matAdj;
     }
 
     @Override
     public boolean isVoisin(int i, int j) {
+
         return false;
     }
 }
