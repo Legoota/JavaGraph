@@ -1,5 +1,6 @@
-package graphe;
+package graphe.grapheAdj;
 
+import graphe.Graphe;
 import matrice.Matrice;
 
 public class GraphAdj implements Graphe {

@@ -4,6 +4,7 @@ public class Matrice {
     public final int ordre;
     int[][] A;
 
+    //TODO: Verif si tout marche bien
     /**
      * Initialize la matrice avec des valeurs alï¿½atoires entre 0 et 9.
      * @param ordre Dimension de la matrice.
