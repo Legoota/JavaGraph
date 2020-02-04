@@ -21,5 +21,8 @@ public class MainGraphAdj {
                         {0,0,0,0,0,1,0}};
         Matrice m = new Matrice(mat);
         GraphAdj graphe = new GraphAdj(m);
+
+        System.out.println(graphe.isVoisin(2,3));// Test de la fonction isVoisin (cas NOK)
+        System.out.println(graphe.isVoisin(4,1));// Test de la fonction isVoisin (cas OK)
     }
 }

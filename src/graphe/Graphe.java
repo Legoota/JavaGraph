@@ -13,4 +13,12 @@ public interface Graphe {
      */
     boolean isVoisin(int i, int j);
 
+    /**
+     *
+     * @param i Le sommet de départ
+     * @param j Le sommet d'arrivée
+     * @return La distance entre le premier sommet et le deuxieme sommet
+     */
+    int distance(int i, int j);
+
 }

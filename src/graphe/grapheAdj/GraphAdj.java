@@ -19,7 +19,12 @@ public class GraphAdj implements Graphe {
 
     @Override
     public boolean isVoisin(int i, int j) {
+        return this.matrice.get(i,j) == 1;
+    }
 
-        return false;
+    @Override
+    public int distance(int i, int j) {
+
+        return 0;
     }
 }

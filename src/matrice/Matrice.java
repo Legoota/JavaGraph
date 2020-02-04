@@ -83,7 +83,7 @@ public class Matrice {
     /**
      * Ajoute deux matrices.
      * @param M La matrice a ajouter a la matrice de l'instance courrante.
-     * @return Le resultat dela somme.
+     * @return Le resultat de la somme.
      */
     public Matrice add(Matrice M) {
         Matrice Mret=new Matrice(this.ordre);

@@ -20,4 +20,9 @@ public class GraphS implements Graphe {
         //TODO: Exceptions
         return false;
     }
+
+    @Override
+    public int distance(int i, int j) {
+        return 0;
+    }
 }
