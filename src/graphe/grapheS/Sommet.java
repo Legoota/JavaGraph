@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Sommet {
 
-    //TODO: check type list
+    //TODO: changer l'arraylist en vecteur
     public ArrayList<Sommet> sommetsVoisins;
 
     /**
@@ -17,7 +17,7 @@ public class Sommet {
      */
     public Sommet(ArrayList<Sommet> sommets){
         this.sommetsVoisins = sommets;
-        //TODO: Exceptions sur l'arraylist
+        //TODO: Exceptions sur le vecteur
     }
 
     /**
