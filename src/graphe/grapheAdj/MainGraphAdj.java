@@ -25,5 +25,7 @@ public class MainGraphAdj {
 
         System.out.println(graphe.isVoisin(2,3));// Test de la fonction isVoisin (cas NOK)
         System.out.println(graphe.isVoisin(4,1));// Test de la fonction isVoisin (cas OK)
+        System.out.println(graphe.distance(1,3));// Test de la fonction distance
+        System.out.println(graphe.distance(3,1));// Test de la fonction distance
     }
 }
