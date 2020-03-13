@@ -24,14 +24,16 @@ public class GraphAdj implements Graphe {
 
     @Override
     public int distance(int i, int j) {
-        Matrice temp = new Matrice(this.ordre);
+        Matrice temp = new Matrice(this.ordre); //eviter de faire une reference a l'objet pour ne pas modifier la matrice originale
         temp = this.matrice;
-        i = 1;
-        while((temp.get(i, j) == 0) && (i < this.ordre)){
-            temp.puissance(i);
-            i++;
+        if(this.matrice.get(i,j) != 0) return 1;
+
+        int k = 1;
+        while((temp.get(i, j) == 0) && (k < this.ordre)){
+            temp = temp.puissance(k);
+            k++;
             temp.toString();
         }
-        return temp.get(i, j);
+        return k-1;// temp.get(i, j);
     }
 }
