@@ -29,7 +29,8 @@ public class GraphAdj implements Graphe {
         if(this.matrice.get(i,j) != 0) return 1;
 
         int k = 1;
-        while((temp.get(i, j) == 0) && (k < this.ordre)){
+        while((temp.get(i, j) == 0)){
+            if(k > this.ordre) return -1;
             temp = temp.puissance(k);
             k++;
             temp.toString();
