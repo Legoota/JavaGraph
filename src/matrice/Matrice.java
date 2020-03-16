@@ -63,6 +63,14 @@ public class Matrice {
     }
 
     /**
+     * Permet d'obtenir le tableau a deux dimensions correspondant a la matrice
+     * @return Tableau en deux dimensions de la matrice
+     */
+    public int[][] getArray() {
+        return this.A;
+    }
+
+    /**
      * Verifie l'egalite d'une matrice avec la matrice de l'instance invoquee.
      * @param M La matrice a comparer.
      * @return <b>True</b> si les deux matrices sont identiques, <b>False</b> sinon.

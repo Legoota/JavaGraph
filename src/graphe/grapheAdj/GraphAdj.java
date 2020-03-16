@@ -24,17 +24,20 @@ public class GraphAdj implements Graphe {
 
     @Override
     public int distance(int i, int j) {
-        Matrice temp = new Matrice(this.ordre); //eviter de faire une reference a l'objet pour ne pas modifier la matrice originale
-        temp = this.matrice;
-        if(this.matrice.get(i,j) != 0) return 1;
+        // TODO: Ajouter exceptions, cad throws new + differents types dans un try catch
+        // TODO: Changer signature fonction pour lancer les erreurs
+        // TODO: Ajouter tests unitaires JUnit pour verifier: cas sommet negatif, cas sommet > ordre, cas cyclique (k >> ordre)
+        if(i == j) return 0; // Cas meme sommet
+        if(i >= this.ordre || j >= this.ordre || i < 0 || j < 0) return -2; // Cas sommet non existant
+        if(this.matrice.get(i,j) != 0) return 1; // Cas sommets directement lies par arete
 
-        int k = 1;
+        Matrice temp = new Matrice(this.matrice.getArray()); //eviter de faire une reference a l'objet (=matrice originale) pour ne pas la modifier directement
+        int k = 0;
         while((temp.get(i, j) == 0)){
-            if(k > this.ordre) return -1;
-            temp = temp.puissance(k);
+            if(k > this.ordre) return -1; // Cas arbre
+            temp = this.matrice.puissance(k+1);
             k++;
-            temp.toString();
         }
-        return k-1;// temp.get(i, j);
+        return k;//temp.get(i,j); // = nombre de parcours pour chemin de distance k
     }
 }
