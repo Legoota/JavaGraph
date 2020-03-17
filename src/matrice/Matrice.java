@@ -1,5 +1,8 @@
 package matrice;
 
+/**
+ * Classe Matrice (tableau 2D)
+ */
 public class Matrice {
     public final int ordre;
     int[][] A;

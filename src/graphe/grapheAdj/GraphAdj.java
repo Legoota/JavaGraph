@@ -3,6 +3,9 @@ package graphe.grapheAdj;
 import graphe.Graphe;
 import matrice.Matrice;
 
+/**
+ * Classe Graphe utilisant matrice d'adjacence
+ */
 public class GraphAdj implements Graphe {
 
     private Matrice matrice;

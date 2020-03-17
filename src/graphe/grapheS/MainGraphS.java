@@ -8,6 +8,7 @@ public class MainGraphS {
     /**
      * Main test pour graphe avec sommets
      * @param args Arguments du main
+     * @author Leo Krebs
      */
     public static void main(String[] args){
         //TODO: Ajouter des tests sur les graphes
