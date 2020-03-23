@@ -6,9 +6,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de test de la classe GraphAdj
+ * Classe de test de la classe GraphS
  */
-public class GraphAdjTest {
+public class GraphSTest {
 
     @Before
     public void setUp() throws Exception {
