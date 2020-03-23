@@ -15,8 +15,8 @@ public interface Graphe {
 
     /**
      *
-     * @param i Le sommet de départ
-     * @param j Le sommet d'arrivée
+     * @param i Le sommet de depart
+     * @param j Le sommet d'arrivee
      * @return La distance entre le premier sommet et le deuxieme sommet
      */
     int distance(int i, int j);
