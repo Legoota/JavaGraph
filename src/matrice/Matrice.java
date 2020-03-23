@@ -9,7 +9,7 @@ public class Matrice {
 
     //TODO: Verif si tout marche bien
     /**
-     * Initialize la matrice avec des valeurs aleatoires entre 0 et 9.
+     * Initialise la matrice avec des valeurs aleatoires entre 0 et 9.
      * @param ordre Dimension de la matrice.
      */
     public Matrice(int ordre){
@@ -31,6 +31,10 @@ public class Matrice {
         this.A = M;
     }
 
+    /**
+     * Initialise la matrice en prenant une autre matrice.
+     * @param m La matrice a dupliquer.
+     */
     public Matrice(Matrice m){
         this.ordre = m.ordre;
         this.A = m.getArray();
