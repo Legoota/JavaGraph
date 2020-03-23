@@ -34,7 +34,7 @@ public class GraphAdj implements Graphe {
         if(i >= this.ordre || j >= this.ordre || i < 0 || j < 0) return -2; // Cas sommet non existant
         if(this.matrice.get(i,j) != 0) return 1; // Cas sommets directement lies par arete
 
-        Matrice temp = new Matrice(this.matrice.getArray()); //eviter de faire une reference a l'objet (=matrice originale) pour ne pas la modifier directement
+        Matrice temp = new Matrice(this.matrice); //eviter de faire une reference a l'objet (=matrice originale) pour ne pas la modifier directement
         int k = 0;
         while((temp.get(i, j) == 0)){
             if(k > this.ordre) return -1; // Cas arbre

@@ -31,6 +31,11 @@ public class Matrice {
         this.A = M;
     }
 
+    public Matrice(Matrice m){
+        this.ordre = m.ordre;
+        this.A = m.getArray();
+    }
+
     /**
      * Permet d'obtenir un element de la matrice.
      * @param l Position par rapport au premier parametre.
