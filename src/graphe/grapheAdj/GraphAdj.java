@@ -21,8 +21,13 @@ public class GraphAdj implements Graphe {
     }
 
     @Override
-    public boolean isVoisin(int i, int j) {
-        return this.matrice.get(i,j) == 1;
+    public boolean isVoisin(int i, int j) throws IllegalArgumentException {
+        try {
+            return this.matrice.get(i,j) == 1;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            throw new IllegalArgumentException("Les sommets ne sont pas des int.");
+        }
     }
 
     @Override
