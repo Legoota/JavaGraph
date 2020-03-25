@@ -1,5 +1,7 @@
 package matrice;
 
+import exceptions.BadSizeGrapheException;
+
 /**
  * Classe Matrice (tableau 2D)
  */
@@ -12,6 +14,7 @@ public class Matrice {
      * @param ordre Dimension de la matrice.
      */
     public Matrice(int ordre){
+        if(ordre< 0) throw new BadSizeGrapheException(ordre);
         this.ordre = ordre;
         this.A = new int[ordre][ordre];
         for (int i = 0;i < this.ordre;i++){

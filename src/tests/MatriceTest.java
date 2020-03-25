@@ -1,9 +1,11 @@
 package tests;
 
+import exceptions.BadSizeGrapheException;
 import matrice.Matrice;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.*;
 
 /**
@@ -24,6 +26,18 @@ public class MatriceTest {
                         {0,0,0,0,0,0,1,0,1},
                         {0,0,0,0,0,0,0,1,0}};
         m = new Matrice(mat);
+    }
+
+    @Test (expected = BadSizeGrapheException.class)
+    public void creationMatriceImpossible() {
+        Matrice m2 = new Matrice(-5);
+        fail("Aurait du lancer BadSizeGrapheException");
+    }
+
+    @Test
+    public void creationMatriceAleatoire() {
+        Matrice m3 = new Matrice(5);
+        assertThat(m3, instanceOf(Matrice.class));
     }
 
     @Test (expected = IllegalArgumentException.class)
