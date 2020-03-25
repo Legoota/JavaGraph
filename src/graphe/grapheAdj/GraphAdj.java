@@ -28,15 +28,14 @@ public class GraphAdj implements Graphe {
 
     @Override
     public int distance(int i, int j) throws IllegalArgumentException, IndexOutOfBoundsException {
-        // TODO: Ajouter tests unitaires JUnit pour verifier: cas sommet negatif, cas sommet > ordre, cas cyclique (k >> ordre)
-        if(i >= this.ordre || j >= this.ordre || i < 0 || j < 0) throw new IllegalArgumentException("Les sommets n'existent pas !"); // Cas sommet non existant
+        if(i >= this.ordre || j >= this.ordre || i < 0 || j < 0) throw new IllegalArgumentException("Les sommets n'existent pas !");
         if(i == j) return 0; // Cas meme sommet
         if(this.matrice.get(i,j) != 0) return 1; // Cas sommets directement lies par arete
 
         Matrice temp = new Matrice(this.matrice); //eviter de faire une reference a l'objet (=matrice originale) pour ne pas la modifier directement
         int k = 0;
         while((temp.get(i, j) == 0)){
-            if(k > this.ordre) throw new IndexOutOfBoundsException("Ces sommets ne sont pas relies"); // Cas arbre
+            if(k > this.ordre) throw new IndexOutOfBoundsException("Ces sommets ne sont pas relies");
             temp = this.matrice.puissance(k+1);
             k++;
         }
