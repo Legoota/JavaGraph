@@ -22,27 +22,21 @@ public class GraphAdj implements Graphe {
 
     @Override
     public boolean isVoisin(int i, int j) throws IllegalArgumentException {
-        try {
-            return this.matrice.get(i,j) == 1;
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-            throw new IllegalArgumentException("Les sommets ne sont pas des int.");
-        }
+        if(0 <= i && 0 <= j && i < this.ordre && j < this.ordre) return this.matrice.get(i,j) == 1;
+        else throw new IllegalArgumentException("Les sommets n'existent pas !");
     }
 
     @Override
-    public int distance(int i, int j) {
-        // TODO: Ajouter exceptions, cad throws new + differents types dans un try catch
-        // TODO: Changer signature fonction pour lancer les erreurs
+    public int distance(int i, int j) throws IllegalArgumentException, IndexOutOfBoundsException {
         // TODO: Ajouter tests unitaires JUnit pour verifier: cas sommet negatif, cas sommet > ordre, cas cyclique (k >> ordre)
+        if(i >= this.ordre || j >= this.ordre || i < 0 || j < 0) throw new IllegalArgumentException("Les sommets n'existent pas !");// Cas sommet non existant
         if(i == j) return 0; // Cas meme sommet
-        if(i >= this.ordre || j >= this.ordre || i < 0 || j < 0) return -2; // Cas sommet non existant
         if(this.matrice.get(i,j) != 0) return 1; // Cas sommets directement lies par arete
 
         Matrice temp = new Matrice(this.matrice); //eviter de faire une reference a l'objet (=matrice originale) pour ne pas la modifier directement
         int k = 0;
         while((temp.get(i, j) == 0)){
-            if(k > this.ordre) return -1; // Cas arbre
+            if(k > this.ordre) throw new IndexOutOfBoundsException("Ces sommets ne sont pas relies"); // Cas arbre
             temp = this.matrice.puissance(k+1);
             k++;
         }
