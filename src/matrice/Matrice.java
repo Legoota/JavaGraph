@@ -7,7 +7,6 @@ public class Matrice {
     public final int ordre;
     int[][] A;
 
-    //TODO: Verif si tout marche bien
     /**
      * Initialise la matrice avec des valeurs aleatoires entre 0 et 9.
      * @param ordre Dimension de la matrice.
@@ -46,18 +45,20 @@ public class Matrice {
      * @param h Position par rapport au second parametre.
      * @return Valeur souhaitee.
      */
-    public int get(int l, int h) {
-        return this.A[l][h];
+    public int get(int l, int h) throws IllegalArgumentException {
+        if(0 <= l && 0 <= h && l < this.ordre && h < this.ordre) return this.A[l][h];
+        else throw new IllegalArgumentException(" Position impossible");
     }
 
     /**
      * Change la valeur d'un elment de la matrice.
-     * @param l Position par rapport au premier paramï¿½tre.
-     * @param h Position par rapport au second paramï¿½tre.
+     * @param l Position par rapport au premier parametre.
+     * @param h Position par rapport au second parametre.
      * @param v Valeur positionnelle en (l,h).
      */
-    public void set(int l,int h, int v) {
-        this.A[l][h] = v;
+    public void set(int l,int h, int v) throws IllegalArgumentException {
+        if(0 <= l && 0 <= h && l < this.ordre && h < this.ordre) this.A[l][h] = v;
+        else throw new IllegalArgumentException(" Position impossible");
     }
 
     /**
@@ -133,7 +134,7 @@ public class Matrice {
     }
 
     /**
-     * Calculle puissance de la matrice.
+     * Calcule puissance de la matrice.
      * @param k La matrice a mettre a la puissance k.
      * @return Le resultat du produit.
      */

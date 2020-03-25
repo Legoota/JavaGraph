@@ -1,5 +1,6 @@
 package tests;
 
+import matrice.Matrice;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,40 +10,42 @@ import static org.junit.Assert.*;
  * Classe de test de la classe Matrice
  */
 public class MatriceTest {
+    private Matrice m;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        int[][] mat =  {{0,1,1,0,1,1,0,0,0},
+                        {1,0,0,1,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0},
+                        {0,1,0,0,0,1,1,0,0},
+                        {1,0,0,0,0,0,0,0,0},
+                        {1,0,0,1,0,0,1,0,0},
+                        {0,0,0,1,0,1,0,1,0},
+                        {0,0,0,0,0,0,1,0,1},
+                        {0,0,0,0,0,0,0,1,0}};
+        m = new Matrice(mat);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void getImpossible() {
+        m.get(100, 100);
+        fail("Aurait du lancer IndexOutOfBoundsException");
     }
 
     @Test
-    public void get() {
+    public void getValeur() {
+        assertEquals(1, m.get(0, 1));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void setImpossible() {
+        m.set(100, 100, 100);
+        fail("Aurait du lancer IndexOutOfBoundsException");
     }
 
     @Test
-    public void set() {
-    }
-
-    @Test
-    public void testToString() {
-    }
-
-    @Test
-    public void getArray() {
-    }
-
-    @Test
-    public void testEquals() {
-    }
-
-    @Test
-    public void add() {
-    }
-
-    @Test
-    public void mult() {
-    }
-
-    @Test
-    public void puissance() {
+    public void setValeur() {
+        m.set(0,0,10);
+        assertEquals(10,m.get(0,0));
     }
 }
