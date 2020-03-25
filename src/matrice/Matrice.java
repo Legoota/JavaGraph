@@ -22,6 +22,7 @@ public class Matrice {
         }
     }
 
+    //TODO: PUE SA MERE Y A UN DOSSIER DOC ET UN DOSSIER DOCS
     /**
      * Initialise la matrice en prenant directemnt un tableau d'entiers.
      * @param M Le tableau de valeurs.
