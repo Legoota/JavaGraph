@@ -1,6 +1,6 @@
 package graphe.grapheS;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Classe Sommet
@@ -8,22 +8,39 @@ import java.util.ArrayList;
  */
 public class Sommet {
 
-    //TODO: changer l'arraylist en vecteur
-    public ArrayList<Sommet> sommetsVoisins;
+    private int id;
+    Vector<Sommet> voisins=new Vector<>();
 
     /**
      * Constructeur d'un sommet
-     * @param sommets La liste de sommets voisins
+     * @param id Le numero du sommet
      */
-    public Sommet(ArrayList<Sommet> sommets){
-        this.sommetsVoisins = sommets;
-        //TODO: Exceptions sur le vecteur
+    public Sommet(int id) throws IllegalArgumentException {
+        if(id < 0) throw new IllegalArgumentException("Valeur de sommet negative impossible");
+        this.id = id;
     }
 
     /**
-     * Constructeur d'un sommet
+     * Ajoute un sommet dans la liste des sommets voisins
+     * @param s Le sommet a ajouter
      */
-    public Sommet(){
-        this.sommetsVoisins = new ArrayList<>();
+    void addVoisin(Sommet s) {
+        voisins.add(s);
+    }
+
+    /**
+     * Vérifie si le sommet rentre en parametre est bien un voisin
+     * @param s Le voisin potentiel
+     * @return true si voisin, false sinon
+     */
+    boolean isVoisin(Sommet s) {
+        return voisins.contains(s);
+    }
+
+    @Override
+    public String toString() {
+        String str = id + ": [";
+        for (int i = 0; i < voisins.size() - 1; i++) str += voisins.get(i).id + ", ";
+        return str + voisins.get(voisins.size()-1).id + "]";
     }
 }
