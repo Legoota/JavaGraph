@@ -24,8 +24,17 @@ public class Sommet {
      * Ajoute un sommet dans la liste des sommets voisins
      * @param s Le sommet a ajouter
      */
-    void addVoisin(Sommet s) {
-        voisins.add(s);
+    void addVoisin(Sommet s) throws IllegalArgumentException {
+        if(s.id < 0) throw new IllegalArgumentException("Le sommet ne peut pas etre negatif");
+        try {
+            if(!this.voisins.contains(s)){
+                if(s.id == this.id) voisins.add(s);
+                else{
+                    voisins.add(s);
+                    s.voisins.add(this);
+                }
+            }
+        } catch(Exception e){ throw new IllegalArgumentException("Le sommet est inexistant"); }
     }
 
     /**
@@ -39,8 +48,12 @@ public class Sommet {
 
     @Override
     public String toString() {
-        String str = id + ": [";
-        for (int i = 0; i < voisins.size() - 1; i++) str += voisins.get(i).id + ", ";
-        return str + voisins.get(voisins.size()-1).id + "]";
+        String str = String.valueOf(id);
+        if(this.voisins.size()>0){
+            str += ": [";
+            for (int i = 0; i < voisins.size() - 1; i++) str += voisins.get(i).id + ", ";
+            str += voisins.get(voisins.size()-1).id + "]";
+        }
+        return str;
     }
 }
