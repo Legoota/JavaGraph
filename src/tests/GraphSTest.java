@@ -14,7 +14,7 @@ public class GraphSTest {
 
     @Before
     public void setUp() {
-        graphe = new GraphS(5);
+        graphe = new GraphS(6);
         graphe.addArete(0,1);
         graphe.addArete(2,3);
         graphe.addArete(2,1);
@@ -54,7 +54,18 @@ public class GraphSTest {
     }
 
     @Test
-    public void distance() {
-        //TODO corps test
+    public void distanceOk() {
+        assertEquals(3,graphe.distance(3,4));
+    }
+
+    @Test
+    public void distanceNotOk() {
+        assertEquals(-1,graphe.distance(5,0));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void distanceError() {
+        graphe.distance(-1,1);
+        fail("Aurait du lancer IllegalArgumentException");
     }
 }

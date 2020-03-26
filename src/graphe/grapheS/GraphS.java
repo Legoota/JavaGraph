@@ -41,7 +41,8 @@ public class GraphS implements Graphe {
     }
 
     @Override
-    public int distance(int i, int j) {
+    public int distance(int i, int j) throws IllegalArgumentException {
+        if (i < 0 || j < 0) throw new IllegalArgumentException("Au moins un des sommets est negatif");
         LinkedList<Integer> l = new LinkedList<>();
         l.add(i);
         sommets.get(i).setFlag(true);
