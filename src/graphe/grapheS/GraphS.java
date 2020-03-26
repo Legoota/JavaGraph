@@ -2,6 +2,8 @@ package graphe.grapheS;
 
 import exceptions.BadSizeGrapheException;
 import graphe.Graphe;
+
+import java.util.LinkedList;
 import java.util.Vector;
 
 /**
@@ -40,7 +42,31 @@ public class GraphS implements Graphe {
 
     @Override
     public int distance(int i, int j) {
-        return 0;
+        LinkedList<Integer> l = new LinkedList<>();
+        l.add(i);
+        sommets.get(i).setFlag(true);
+        LinkedList<Integer> ldistance = new LinkedList<>();
+        ldistance.add(0);
+
+        while(l.size() != 0) {
+            Sommet sommetCourant = sommets.get(l.getFirst());
+            for(int x = 0; x<sommetCourant.getVoisins().size(); x++) {
+                Sommet voisinCourant = sommetCourant.getVoisins().get(x);
+                if (voisinCourant.getId() == j){
+                    for(int y = 0; y < this.taille; y++) { this.sommets.get(y).setFlag(false); } // Reinitialisation du flag
+                    return ldistance.getFirst()+1;
+                }
+                if(!voisinCourant.getFlag()){
+                    voisinCourant.setFlag(true);
+                    l.add(voisinCourant.getId());
+                    ldistance.add(ldistance.getFirst()+1);
+                }
+            }
+            l.remove();
+            ldistance.remove();
+        }
+
+        return -1; // Cas ou pas de chemin entre les sommets
     }
 
     @Override

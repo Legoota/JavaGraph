@@ -9,7 +9,8 @@ import java.util.Vector;
 public class Sommet {
 
     private int id;
-    Vector<Sommet> voisins=new Vector<>();
+    private Vector<Sommet> voisins=new Vector<>();
+    private boolean flag = false;
 
     /**
      * Constructeur d'un sommet
@@ -19,6 +20,30 @@ public class Sommet {
         if(id < 0) throw new IllegalArgumentException("Valeur de sommet negative impossible");
         this.id = id;
     }
+
+    /**
+     * Setter de flag
+     * @param val Valeur a attribuer au flag
+     */
+    public void setFlag(boolean val) { this.flag = val; }
+
+    /**
+     * Getter de flag
+     * @return Valeur du flag
+     */
+    public boolean getFlag() { return this.flag; }
+
+    /**
+     * Getter du vecteur voisins
+     * @return Vecteur voisins
+     */
+    public Vector<Sommet> getVoisins() { return this.voisins; }
+
+    /**
+     * Getter de l'id du sommet
+     * @return L'id du sommet
+     */
+    public int getId() { return this.id; }
 
     /**
      * Ajoute un sommet dans la liste des sommets voisins
