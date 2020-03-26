@@ -38,7 +38,7 @@ public class Sommet {
     }
 
     /**
-     * Vérifie si le sommet rentre en parametre est bien un voisin
+     * Verifie si le sommet rentre en parametre est bien un voisin
      * @param s Le voisin potentiel
      * @return true si voisin, false sinon
      */

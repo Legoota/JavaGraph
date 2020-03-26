@@ -45,14 +45,12 @@ public class GraphSTest {
 
     @Test
     public void addAreteOk() {
-        graphe.addArete(1,4);
-        assertEquals(true,(graphe.isVoisin(1,4)));
+        assertEquals(true,(graphe.isVoisin(0,1)));
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test
     public void addAreteNotOk() {
-        graphe.addArete(0,100);
-        fail("Aurait du lancer IndexOutOfBoundsException");
+        assertEquals(false, graphe.isVoisin(0,3));
     }
 
     @Test
