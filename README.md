@@ -4,7 +4,7 @@
 ---
 ### Summary
 
-3rd year project at the Polytech Nancy's Engineering School.
+3<sup>rd</sup> year project at the Polytech Nancy's Engineering School.
 The main goal was to realise a network simulation (DHCP server, routing table)
 using the Java language and graph theory.
 
