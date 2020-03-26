@@ -24,35 +24,39 @@ public class GraphSTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void isVoisinNegatif() {
-
+        graphe.isVoisin(-1, 1);
+        fail("Aurait du lancer IllegalArgumentException");
     }
 
     @Test
     public void isVoisinOk() {
-
+        assertEquals(true, graphe.isVoisin(0,1));
     }
 
     @Test
     public void isVoisinNotOk() {
-
+        assertEquals(false, graphe.isVoisin(0,3));
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void addAreteNegatif() {
-
+        graphe.addArete(-1,-1);
     }
 
     @Test
     public void addAreteOk() {
-
+        graphe.addArete(1,4);
+        assertEquals(true,(graphe.isVoisin(1,4)));
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void addAreteNotOk() {
-
+        graphe.addArete(0,100);
+        fail("Aurait du lancer IndexOutOfBoundsException");
     }
 
     @Test
     public void distance() {
+        //TODO corps test
     }
 }
