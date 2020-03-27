@@ -30,6 +30,7 @@ using the Java language and graph theory.
 ### Installation
 
 * Clone the repository
+* Install Gson-2.8.5.jar dependency (for JSON export)
 * Launch using a Java compiler
 
 ---

@@ -26,6 +26,22 @@ public class GraphS implements Graphe {
     }
 
     /**
+     * Getter permettant de recuperer la taille du graphe
+     * @return La taille du graphe
+     */
+    public int getTaille() {
+        return this.taille;
+    }
+
+    /**
+     * Getter permettant de recuperer le vecteur de sommets du graphe
+     * @return Le vecteur de sommets du graphe
+     */
+    public Vector<Sommet> getSommets() {
+        return this.sommets;
+    }
+
+    /**
      * Ajoute une arete entre deux sommets
      * @param i Premier sommet
      * @param j Deuxieme sommet
