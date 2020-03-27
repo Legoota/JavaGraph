@@ -16,6 +16,8 @@ using the Java language and graph theory.
 * BFS Algorithm
 * DFS Algorithm
 * IP class
+* Machine class (IP, logs, auth with ENUM) extending Sommet
+* Global main class for performance testing
 * Routing
 * GEXF export files
 * Display using GEXF and sigma.js
