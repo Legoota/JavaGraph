@@ -16,6 +16,8 @@ public class GraphS implements Graphe {
 
     /**
      * Constructeur d'un Graphe utilisant des sommets.
+     * @param taille taille du graphe
+     * @throws IllegalArgumentException taille non valide (negative)
      */
     public GraphS(int taille) throws BadSizeGrapheException {
         if(taille < 0) throw new BadSizeGrapheException(taille);
