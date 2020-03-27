@@ -49,7 +49,7 @@ public class Sommet {
      * Ajoute un sommet dans la liste des sommets voisins
      * @param s Le sommet a ajouter
      */
-    void addVoisin(Sommet s) throws IllegalArgumentException {
+    public void addVoisin(Sommet s) throws IllegalArgumentException {
         if(s.id < 0) throw new IllegalArgumentException("Le sommet ne peut pas etre negatif");
         try {
             if(!this.voisins.contains(s)){
@@ -67,7 +67,7 @@ public class Sommet {
      * @param s Le voisin potentiel
      * @return true si voisin, false sinon
      */
-    boolean isVoisin(Sommet s) {
+    public boolean isVoisin(Sommet s) {
         return voisins.contains(s);
     }
 
