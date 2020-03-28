@@ -26,5 +26,5 @@ hs_err_pid*
 *.iml
 
 # Visualizer
-graphVisualizer/node_modules/
-graphVisualizer/*.lock
+/graphVisualizer/node_modules/*
+/graphVisualizer/*.lock
