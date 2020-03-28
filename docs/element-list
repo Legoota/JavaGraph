@@ -2,5 +2,6 @@ exceptions
 graphe
 graphe.grapheAdj
 graphe.grapheS
+json
 matrice
 tests

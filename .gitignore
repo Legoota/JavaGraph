@@ -10,7 +10,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.nar
@@ -23,3 +23,7 @@
 hs_err_pid*
 .idea/*
 *.iml
+
+# Visualizer
+graphVisualizer/node_modules/
+graphVisualizer/*.lock
