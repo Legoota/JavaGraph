@@ -33,7 +33,7 @@ public class Export {
         System.out.println(json);
 
         // Ecriture dans un fichier export.json
-        try (FileWriter writer = new FileWriter("src/json/export.json")) {
+        try (FileWriter writer = new FileWriter("export.json")) {
             gson.toJson(grex, writer);
         } catch (IOException e) {
             e.printStackTrace();
