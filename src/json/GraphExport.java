@@ -35,6 +35,16 @@ public class GraphExport {
     }
 
     /**
+     * Methode permettant de convertir le GraphExport en GraphS
+     * @return
+     */
+    public GraphS toGraphS() {
+        GraphS graphS = new GraphS(this.nodes.size());
+        for(int i = 0; i < this.edges.size(); i++) graphS.addArete(this.edges.get(i).getSourceInt(),this.edges.get(i).getTargetInt());
+        return graphS;
+    }
+
+    /**
      * Methode permettant de savoir si l'arete est deja dans la liste edges
      * @param a Premier sommet
      * @param b Deuxieme sommet

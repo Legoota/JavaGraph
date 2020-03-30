@@ -38,12 +38,24 @@ public class Edge {
     }
 
     /**
+     * Getter de la valeur du sommet de la source
+     * @return La valeur int du sommet de la source
+     */
+    public int getSourceInt() { return Integer.valueOf(this.source.substring(1)); }
+
+    /**
      * Getter de l'id du sommet de la cible
      * @return L'id du sommet de la cible
      */
     public String getTarget() {
         return this.target;
     }
+
+    /**
+     * Getter de la valeur du sommet de la cible
+     * @return La valeur int du sommet de la cible
+     */
+    public int getTargetInt() { return Integer.valueOf(this.target.substring(1)); }
 
     /**
      * Methode permettant de savoir si l'arete existe deja (pour eviter les redondances)
