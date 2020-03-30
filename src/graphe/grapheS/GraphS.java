@@ -88,6 +88,32 @@ public class GraphS implements Graphe {
         return -1; // Cas ou pas de chemin entre les sommets
     }
 
+    /**
+     * Methode realisant un graphe BFS a partir d'un graphS
+     * @return Un graphS BFS
+     */
+    public GraphS BFS() {
+        GraphS bfs = new GraphS(this.taille);
+        LinkedList<Integer> l = new LinkedList<>();
+        l.add(0);
+        this.sommets.get(0).setFlag(true);
+        while(l.size() != 0) {
+            Sommet sommetCourant = this.sommets.get(l.getFirst());
+            for(int i = 0; i < sommetCourant.getVoisins().size(); i++){
+                Sommet voisinCourant = sommetCourant.getVoisins().get(i);
+                if(!voisinCourant.getFlag()){
+                    bfs.addArete(sommetCourant.getId(),voisinCourant.getId());
+                    voisinCourant.setFlag(true);
+                    l.add(voisinCourant.getId());
+                }
+            }
+            l.remove();
+        }
+        for(int j = 0; j < this.taille; j++) this.sommets.get(j).setFlag(false);
+
+        return bfs;
+    }
+
     @Override
     public String toString(){
         String str = "";
