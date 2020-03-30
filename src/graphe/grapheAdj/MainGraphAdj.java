@@ -10,7 +10,6 @@ public class MainGraphAdj {
     /**
      * Main test pour graphe avec matrice d'adjacence
      * @param args Arguments du main
-     * @author Leo Boulard
      */
     public static void main(String[] args){
         int[][] mat =  {{0,1,1,0,1,1,0,0,0},
