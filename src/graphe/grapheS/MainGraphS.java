@@ -24,9 +24,12 @@ public class MainGraphS {
         //System.out.println("Distance entre 0 et 2: " + graphe.distance(0,2));
         //System.out.println("Distance (non valide) entre 0 et 5: " + graphe.distance(0,5));
 
-        System.out.println("BFS...\n");
+        //System.out.println("BFS...\n");
+        //GraphS bfs = graphe.BFS();
+        //System.out.println(bfs.toString());
 
-        GraphS bfs = graphe.BFS();
-        System.out.println(bfs.toString());
+        System.out.println("DFS...\n");
+        GraphS dfs = graphe.DFS();
+        System.out.println(dfs.toString());
     }
 }

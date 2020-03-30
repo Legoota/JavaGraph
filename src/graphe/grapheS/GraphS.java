@@ -114,6 +114,38 @@ public class GraphS implements Graphe {
         return bfs;
     }
 
+    /**
+     * Methode realisant un graph DFS a partie d'un graphS
+     * @return Un graphe DFS
+     */
+    public GraphS DFS() {
+        GraphS dfs = new GraphS(this.taille);
+        LinkedList<Integer> l = new LinkedList<>();
+        l.add(0);
+        this.sommets.get(0).setFlag(true);
+        LinkedList<Integer> lposition = new LinkedList<>();
+        lposition.add(0);
+        while(l.size()!=0){
+            Sommet sommetCourant = sommets.get(l.getLast());
+            if(sommetCourant.getVoisins().size()==lposition.getLast()){
+                l.removeLast();
+                lposition.removeLast();
+            }
+            else{
+                Sommet voisinCourant = sommetCourant.getVoisins().get(lposition.getLast());
+                lposition.set(lposition.size()-1,lposition.getLast()+1);
+                if(!voisinCourant.getFlag()){
+                    dfs.addArete(sommetCourant.getId(),voisinCourant.getId());
+                    voisinCourant.setFlag(true);
+                    l.add(voisinCourant.getId());
+                    lposition.add(0);
+                }
+            }
+        }
+        for (int i=0; i<taille;i++)sommets.get(i).setFlag(false);
+        return dfs;
+    }
+
     @Override
     public String toString(){
         String str = "";
