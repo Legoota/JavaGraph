@@ -4,7 +4,14 @@ import graphe.grapheAdj.GraphAdj;
 import graphe.grapheS.GraphS;
 import matrice.Matrice;
 
+/**
+ * Classe pour la comparaison des performances entre GraphAdj et GraphS
+ */
 public class MainGraphe {
+    /**
+     * Main de tests des performances
+     * @param args Arguments du main
+     */
     public static void main(String[] args){
         int[][] mat =  {{0,1,1,0,1,0,1,0,0,1},
                         {1,0,1,0,0,0,0,1,0,0},
