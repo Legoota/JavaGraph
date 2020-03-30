@@ -13,19 +13,19 @@ using the Java language and graph theory.
 
 ###### TBA:
 * DHCP Server
-* BFS Algorithm
-* DFS Algorithm
 * IP class
 * Machine class (IP, logs, auth with ENUM) extending Sommet
-* Global main class for performance testing
 * Routing
-* GEXF or JSON import
+
 ###### Working:
 * Graph using adjacency matrices
 * Graph using Node class
 * Shortest paths between nodes algorithms
-* JSON export
+* JSON import and export
 * JavaScript viewer (using sigma.js)
+* BFS Algorithm
+* DFS Algorithm
+* Global main class for performance testing
 
 ---
 ### Installation
