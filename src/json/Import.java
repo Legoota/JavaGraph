@@ -3,8 +3,7 @@ package json;
 import com.google.gson.Gson;
 import graphe.grapheS.GraphS;
 
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Classe permettant l'import d'un graphe au type JSON
@@ -19,7 +18,7 @@ public class Import {
         Gson gson = new Gson();
 
         // Lecture d'un fichier JSON
-        try (FileReader reader = new FileReader("export.json")) {
+        try (FileReader reader = new FileReader("arctic.json")) {
             GraphExport grex = gson.fromJson(reader, GraphExport.class);
             System.out.println("GraphExport recupere:");
             System.out.println(grex.toString());
@@ -27,6 +26,8 @@ public class Import {
             System.out.println("GraphS produit:");
             GraphS graphS = grex.toGraphS();
             System.out.println(graphS.toString());
+
+            //grex.creerScript();
         } catch (IOException e) {
             e.printStackTrace();
         }
