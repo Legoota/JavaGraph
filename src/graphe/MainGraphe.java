@@ -2,7 +2,10 @@ package graphe;
 
 import graphe.grapheAdj.GraphAdj;
 import graphe.grapheS.GraphS;
+import json.Import;
 import matrice.Matrice;
+
+import java.io.FileNotFoundException;
 
 /**
  * Classe pour la comparaison des performances entre GraphAdj et GraphS
@@ -37,6 +40,17 @@ public class MainGraphe {
         gs.addArete(2,5);
         gs.addArete(4,7);
         gs.addArete(7,8);
+
+        GraphS arctic = null;
+        try {
+            arctic = Import.fetchGraphS("arctic.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        long startTimeArctic = System.currentTimeMillis();
+        arctic.DFS();
+        long finishTimeArctic = System.currentTimeMillis();
+        System.out.println("Fonction DFS pour Arctic = " + (finishTimeArctic - startTimeArctic) + " ms");
 
         long startTime1 = System.nanoTime();
         ga.distance(5,8);

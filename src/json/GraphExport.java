@@ -2,9 +2,6 @@ package json;
 
 import graphe.grapheS.GraphS;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.Vector;
 
 /**
@@ -77,24 +74,6 @@ public class GraphExport {
      */
     public Vector<Node> getNodes() {
         return this.nodes;
-    }
-
-    /**
-     * Cree un script en .properties pour creer un grapheS de taille consequente
-     */
-    public void creerScript(){
-        GraphS graphS = this.toGraphS();
-        try {
-            PrintStream fileStream = new PrintStream(new File("script.txt"));
-            fileStream.println("GraphS graphs = new GraphS(" + graphS.getTaille() + ");");
-            for(int i = 0; i < graphS.getSommets().size(); i++) {
-                for(int j = 0; j < graphS.getSommets().get(i).getVoisins().size(); j++){
-                    fileStream.println("graphs.addArete(" + graphS.getSommets().get(i).getId() + ", " + graphS.getSommets().get(i).getVoisins().get(j).getId() + ");");
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

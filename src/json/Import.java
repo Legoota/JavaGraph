@@ -15,21 +15,27 @@ public class Import {
      * @param args Arguments du main
      */
     public static void main(String[] args){
+        GraphS gs = null;
+        try {
+            gs = Import.fetchGraphS("arctic.json");
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+        System.out.println(gs.toString());
+    }
+
+    /**
+     * Methode permettant de creer un GraphS a partir d'un fichier JSON
+     * @param path Chemin du fichier JSON
+     * @return GraphS correspondant au graphe du fichier
+     * @throws FileNotFoundException Chemin du fichier invalide
+     */
+    public static GraphS fetchGraphS(String path) throws FileNotFoundException{
         Gson gson = new Gson();
 
-        // Lecture d'un fichier JSON
-        try (FileReader reader = new FileReader("arctic.json")) {
+        try (FileReader reader = new FileReader(path)) { //default: "arctic.json"
             GraphExport grex = gson.fromJson(reader, GraphExport.class);
-            System.out.println("GraphExport recupere:");
-            System.out.println(grex.toString());
 
-            System.out.println("GraphS produit:");
-            GraphS graphS = grex.toGraphS();
-            System.out.println(graphS.toString());
+            return grex.toGraphS();
 
-            //grex.creerScript();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { throw new FileNotFoundException("Le fichier specifie est introuvable"); }
     }
 }
