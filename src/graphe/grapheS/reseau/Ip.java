@@ -14,11 +14,23 @@ public class Ip implements Comparable<Ip>{
      * @param C 3eme octet
      * @param D 4eme octet
      */
-    public Ip(int A, int B, int C, int D) {
+    public Ip(int A, int B, int C, int D) throws IllegalArgumentException {
+        if(A < 0 || B < 0 || C < 0 || D < 0 || A > 255 || B > 255 || C > 255 || D > 255) throw new IllegalArgumentException("Les octets de l'adresse ip ne peuvent pas etre negatifs ni superieurs a 255 !");
         this.A=A;
         this.B=B;
         this.C=C;
         this.D=D;
+    }
+
+    /**
+     * Constructeur d'adresse Ip a partie d'un objet Ip
+     * @param IP L'objet IP a dupliquer
+     */
+    public Ip(Ip IP) {
+        this.A=IP.getA();
+        this.B=IP.getB();
+        this.C=IP.getC();
+        this.D=IP.getD();
     }
 
     /**
@@ -54,42 +66,39 @@ public class Ip implements Comparable<Ip>{
     }
 
     /**
-     * Constructeur d'adresse ip a partie d'un objet ip
-     * @param IP
-     */
-    public Ip(Ip IP) {
-        this.A=IP.getA();
-        this.B=IP.getB();
-        this.C=IP.getC();
-        this.D=IP.getD();
-    }
-
-    /**
      * Methode qui implemente l'interface comparable
      * @param o Adresse ip
      * @return 0 si egale, 1 si superieur, -1 si inferieur
      */
     @Override
     public int compareTo(Ip o) {
-        // TODO : pour implementation de l'interface comparable
-        return 0;
+        if(o != null)
+        {
+            if(o.A == this.A && o.B == this.B && o.C == this.C && o.D == this.D) { return 0; }
+            else{
+                String thisAdd = ""+this.A + this.B + this.C + this.D;
+                String oAdd = ""+o.A + o.B + o.C + o.D;
+                return Long.parseLong(thisAdd) > (Long.parseLong(oAdd)) ? 1 : -1;
+            }
+        }
+        else
+            return -10;
     }
 
     /**
      * Methode pour incrementer une adresse ip
      */
-    public void increment() throws IllegalArgumentException{
-        if(this.A < 0 || this.B < 0|| this.C < 0 || this.D < 0)throw new IllegalArgumentException("Les octets de l'adresse ip ne peuvent pas etre negatifs !");
-        if(this.D < 255)this.D++;
+    public void increment() {
+        if(this.D < 255) this.D++;
         else{
             this.D=0;
-            if(this.C < 255)this.C++;
+            if(this.C < 255) this.C++;
             else{
                 this.C=0;
-                if(this.B < 255)this.B++;
+                if(this.B < 255) this.B++;
                 else{
                     this.B=0;
-                    if(this.A < 255)this.A++;
+                    if(this.A < 255) this.A++;
                     else{
                         this.A=0;
                     }
@@ -99,20 +108,10 @@ public class Ip implements Comparable<Ip>{
     }
 
     /**
-     * Méthode qui renvoit un string de l'adresse Ip
+     * Methode qui renvoit un string de l'adresse Ip
      * @return String de l'adresse Ip
      */
     public String toString() {
         return A+"."+B+"."+C+"."+D;
-    }
-
-    /**
-     * Main temporaire de test
-     * @param args arguments du main de test
-     */
-    public static void main(String[] args){
-        Ip adresse = new Ip(255, 255, 255, -10);
-        adresse.increment();
-        System.out.println(adresse.toString());
     }
 }

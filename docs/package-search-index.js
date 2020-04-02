@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"exceptions"},{"l":"graphe"},{"l":"graphe.grapheAdj"},{"l":"graphe.grapheS"},{"l":"json"},{"l":"matrice"},{"l":"tests"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"exceptions"},{"l":"graphe"},{"l":"graphe.grapheAdj"},{"l":"graphe.grapheS"},{"l":"graphe.grapheS.reseau"},{"l":"json"},{"l":"matrice"},{"l":"tests"}]
