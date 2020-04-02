@@ -36,7 +36,7 @@ public class GraphExport {
 
     /**
      * Methode permettant de convertir le GraphExport en GraphS
-     * @return
+     * @return GraphS correspondant au GraphExport
      */
     public GraphS toGraphS() {
         GraphS graphS = new GraphS(this.nodes.size());
