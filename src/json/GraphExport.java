@@ -1,6 +1,7 @@
 package json;
 
 import graphe.grapheS.GraphS;
+import graphe.grapheS.Sommet;
 
 import java.util.Vector;
 
@@ -16,12 +17,13 @@ public class GraphExport {
      * Constructeur de GraphExport
      * @param graphs Instance de GraphS a transformer en GraphExport
      */
-    public GraphExport(GraphS graphs){
+    public GraphExport(GraphS<Sommet> graphs){
         this.nodes = new Vector<>();
         this.edges = new Vector<>();
         for(int i = 0; i < graphs.getTaille(); i++){
             this.nodes.add(new Node(i));
         }
+
 
         int x = 0;
         for(int j = 0; j < graphs.getTaille(); j++){

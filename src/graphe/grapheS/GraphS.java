@@ -9,10 +9,10 @@ import java.util.Vector;
 /**
  * Classe d'un graphe contenant des sommets
  */
-public class GraphS implements Graphe {
+public class GraphS <S extends Sommet> implements Graphe {
 
     private int taille;
-    private Vector<Sommet> sommets = new Vector<>();
+    private Vector<S> sommets = new Vector<>();
 
     /**
      * Constructeur d'un Graphe utilisant des sommets.
@@ -22,7 +22,7 @@ public class GraphS implements Graphe {
     public GraphS(int taille) throws BadSizeGrapheException {
         if(taille < 0) throw new BadSizeGrapheException(taille);
         this.taille = taille;
-        for(int i = 0; i < taille; i++) this.sommets.add(new Sommet(i));
+        for(int i = 0; i < taille; i++) this.sommets.add((S)new Sommet(i));
     }
 
     /**
@@ -37,7 +37,7 @@ public class GraphS implements Graphe {
      * Getter permettant de recuperer le vecteur de sommets du graphe
      * @return Le vecteur de sommets du graphe
      */
-    public Vector<Sommet> getSommets() {
+    public Vector<S> getSommets() {
         return this.sommets;
     }
 
@@ -93,7 +93,7 @@ public class GraphS implements Graphe {
      * @return Un graphS BFS
      */
     public GraphS BFS() {
-        GraphS bfs = new GraphS(this.taille);
+        GraphS bfs = new GraphS<S>(this.taille);
         LinkedList<Integer> l = new LinkedList<>();
         l.add(0);
         this.sommets.get(0).setFlag(true);
@@ -119,7 +119,7 @@ public class GraphS implements Graphe {
      * @return Un graphe DFS
      */
     public GraphS DFS() {
-        GraphS dfs = new GraphS(this.taille);
+        GraphS dfs = new GraphS<S>(this.taille);
         LinkedList<Integer> l = new LinkedList<>();
         l.add(0);
         this.sommets.get(0).setFlag(true);
