@@ -13,8 +13,7 @@ using the Java language and graph theory.
 
 ###### TBA:
 * DHCP Server
-* IP class
-* Machine class (IP, logs, auth with ENUM) extending Sommet
+* Customize Machine class with:logs, auth with ENUM & more
 * Routing
 
 ###### Working:
@@ -26,6 +25,8 @@ using the Java language and graph theory.
 * BFS Algorithm
 * DFS Algorithm
 * Global main class for performance testing
+* IP class
+* Machine class (IP) extending Sommet
 
 ---
 ### Installation
@@ -38,8 +39,8 @@ using the Java language and graph theory.
 Tools needed : [Node.js](https://nodejs.org/en/), [gjslint](https://developers.google.com/closure/utilities/docs/linter_howto?hl=en), [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 * Clone the repository
 * Install Gson-2.8.5.jar dependency (for JSON export)
-* Install dependencies using *yarn* or *npm install*
-* Launch an http-server with *yarn start* or *npm start*
+* Install dependencies using *yarn* or *npm install* in the visualizer directory
+* Launch an http-server with *yarn start* or *npm start* in the visualizer directory
 * Place the JSON file in /graphVisualizer/visualizer/data/ folder
 * Go to the [visualizer.html](http://localhost:8000/visualizer/visualizer.html) page
 
