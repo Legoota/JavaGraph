@@ -26,6 +26,25 @@ public class GraphS <S extends Sommet> implements Graphe {
     }
 
     /**
+     * Constructeur par defaut
+     */
+    public GraphS(){}
+
+    /**
+     * Setter de taille (utilise par classe fille)
+     * @param taille La taille du GraphS
+     */
+    public void setTaille(int taille){ this.taille = taille; }
+
+    /**
+     * Setter de sommet (utilise par classe fille)
+     * @param sommets Le vecteur de sommets du GraphS
+     */
+    public void setSommets(Vector<S> sommets) {
+        this.sommets = sommets;
+    }
+
+    /**
      * Getter permettant de recuperer la taille du graphe
      * @return La taille du graphe
      */
