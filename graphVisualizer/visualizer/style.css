@@ -1,7 +1,19 @@
+body {
+  margin: 0;
+}
 #graph-container {
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  position: absolute;
+  background: #fff;
+}
+#container {
+  position: relative;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  position: absolute;
+  height: 100%;
+  background: #ccc;
 }
