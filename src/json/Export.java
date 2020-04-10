@@ -39,4 +39,12 @@ public class Export {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Methode statique permettant l'export au format JSON
+     * @param graphS Le graphe a exporter
+     */
+    public static void exportToJson(GraphS graphS){
+        // TODO: Ajout fonction export
+    }
 }

@@ -4,7 +4,15 @@ import exceptions.BadSizeGrapheException;
 import graphe.grapheS.GraphS;
 import graphe.grapheS.Sommet;
 
+/**
+ * Classe de test classe Reseau
+ */
 public class MainReseau {
+
+    /**
+     * Main de test de la classe Reseau
+     * @param args Arguments du Main
+     */
     public static void main(String[] args) {
         try {
             int size = 500;
@@ -19,23 +27,25 @@ public class MainReseau {
             }
             g.addArete(0, 5);
             R.addArete(0, 5);
-            System.out.println(g);
+            //System.out.println(g);
             GraphS bfsG = g.BFS();
-            System.out.println(bfsG);
+            //System.out.println(bfsG);
             GraphS dfsG = g.DFS();
-            System.out.println(dfsG);
+            //System.out.println(dfsG);
             long tdebut = System.currentTimeMillis();
             int d = g.distance(0, 300);
             long tfin = System.currentTimeMillis();
             R.DHCP();
-            System.out.println(d + " en " + (tfin - tdebut) + " ms.");
-            System.out.println(R.getMachineByIp(new Ip(110, 23, 0, 10)).getId());
-            System.out.println(R.getMachineByIp(new Ip(110, 23, 1, 10)).getId());
-            System.out.println(R.getMachineByIp(new Ip(10, 10, 10, 10)).getId());
+            //System.out.println(d + " en " + (tfin - tdebut) + " ms.");
+            //System.out.println(R.getMachineByIp(new Ip(110, 23, 0, 10)).getId());
+            //System.out.println(R.getMachineByIp(new Ip(110, 23, 1, 10)).getId());
+            System.out.println("Reseau : "+R.getReseau());
+            System.out.println("Broadcast : "+R.getBroadcast());
+            System.out.println("@IP PC id 100 : "+R.getMachineById(100).getIp());
+            System.out.println("@ID PC ip 110.23.1.10 : "+R.getMachineByIp(new Ip(110, 23, 1, 10)).getId());
 
         } catch (BadSizeGrapheException e) {
             System.out.println(e);
         }
-
     }
 }

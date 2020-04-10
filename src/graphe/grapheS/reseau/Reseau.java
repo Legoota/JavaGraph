@@ -6,6 +6,9 @@ import graphe.grapheS.GraphS;
 
 import java.util.Vector;
 
+/**
+ * Classe correspondant a un reseau
+ */
 public class Reseau extends GraphS<Machine> {
 
     private Ip reseau;
@@ -63,9 +66,13 @@ public class Reseau extends GraphS<Machine> {
      * Getter d'une Machine avec ID
      * @param id L'ID de la Machine
      * @return La Machine d'ID id
+     * @throws IllegalArgumentException Id invalide (n'est pas dans la liste de sommets)
      */
-    public Machine getMachineById(int id){
-        return getSommets().get(id);
+    public Machine getMachineById(int id) throws IllegalArgumentException {
+        for(Machine m: this.getSommets()) {
+            if(m.getId() == id) return m;
+        }
+        throw new IllegalArgumentException("ID pas valide");
     }
 
     /**
@@ -74,7 +81,7 @@ public class Reseau extends GraphS<Machine> {
      * @return La Machine d'IP ip
      * @throws BadIpException Ip invalide (n'est pas dans la liste de sommets)
      */
-    public Machine getMachineByIp(Ip ip) throws BadIpException{
+    public Machine getMachineByIp(Ip ip) throws BadIpException {
         for(Machine m:this.getSommets()){
             if(m.getIp().equals(ip)) return m;
         }
@@ -82,7 +89,38 @@ public class Reseau extends GraphS<Machine> {
     }
 
     /**
+     * Getter de l'ip du reseau
+     * @return IP du reseau
+     */
+    public Ip getReseau() {
+        return this.reseau;
+    }
+
+    /**
+     * Getter de l'ip de broadcast du reseau
+     * @return IP de broadcast du reseau
+     */
+    public Ip getBroadcast() {
+        return this.broadcast;
+    }
+
+    /**
      * Methode simulant un serveur DHCP qui attribue des adresses en fonction de l'ID des machines
      */
-    public void DHCP(){}
+    public void DHCP() throws BadIpException {
+        Ip ipCourant = new Ip(this.reseau);
+        ipCourant.increment();
+        Vector<Machine> machines = this.getSommets();
+
+        for (Machine m : machines)
+        {
+            if(m.getIp() == null){
+                while(machines.stream().anyMatch(a -> ipCourant.equals(a.getIp()))){
+                    ipCourant.increment();
+                    if(ipCourant.equals(this.broadcast)) throw new BadIpException(this.broadcast);
+                }
+                m.setIp(ipCourant);
+            }
+        }
+    }
 }

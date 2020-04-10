@@ -1,4 +1,6 @@
 # JavaGraph
+![JavaGraph Logo](https://github.com/Legoota/JavaGraph/blob/master/logo.png "JavaGraph Logo")
+
 *Network simulation using Graphs in Java.*
 
 ---
@@ -12,8 +14,8 @@ using the Java language and graph theory.
 ### Features
 
 ###### TBA:
-* DHCP Server
 * Customize Machine class with:logs, auth with ENUM & more
+* Add ping method using network ip addresses
 * Routing
 
 ###### Working:
@@ -27,6 +29,7 @@ using the Java language and graph theory.
 * Global main class for performance testing
 * IP class
 * Machine class (IP) extending Sommet
+* DHCP Server
 
 ---
 ### Installation

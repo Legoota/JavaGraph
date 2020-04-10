@@ -66,6 +66,21 @@ public class Ip implements Comparable<Ip>{
     }
 
     /**
+     * Methode equals
+     * @param o Objet a comparer avec l'instance courante
+     * @return true si les deux objets ont la même ip, false sinon
+     */
+    @Override
+    public boolean equals(Object o){
+        if(o != null)
+        {
+            Ip o2 = new Ip((Ip)o);
+            if(o2.A == this.A && o2.B == this.B && o2.C == this.C && o2.D == this.D) { return true; }
+        }
+        return false;
+    }
+
+    /**
      * Methode qui implemente l'interface comparable
      * @param o Adresse ip
      * @return 0 si egale, 1 si superieur, -1 si inferieur
