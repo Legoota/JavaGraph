@@ -1,4 +1,4 @@
-# JavaGraph<img align="right" width="100" height="100" src="https://github.com/Legoota/JavaGraph/blob/master/logo.png">
+# JavaGraph<img align="right" width="100" height="100" src="https://github.com/Legoota/JavaGraph/blob/master/logo.png" alt="Logo JavaGraph">
 
 *Network simulation using Graphs in Java.*
 
