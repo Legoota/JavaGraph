@@ -17,6 +17,11 @@ public class Node {
         this.label = "Node " + id;
     }
 
+    public Node(int id, String label){
+        this.id = "n" + id;
+        this.label = label;
+    }
+
     /**
      * Getter de l'id du Node
      * @return L'id du Node

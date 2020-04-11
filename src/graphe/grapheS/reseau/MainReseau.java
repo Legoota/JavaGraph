@@ -3,6 +3,7 @@ package graphe.grapheS.reseau;
 import exceptions.BadSizeGrapheException;
 import graphe.grapheS.GraphS;
 import graphe.grapheS.Sommet;
+import json.Export;
 
 /**
  * Classe de test classe Reseau
@@ -16,7 +17,7 @@ public class MainReseau {
     public static void main(String[] args) {
         try {
             int size = 500;
-            GraphS g = new GraphS<Sommet>(size);
+            GraphS g = new GraphS(size);
             Reseau R = new Reseau(size, new Ip(110, 23, 12, 12), 20);
             for (int i = 0; i < size - 2; i++) {
                 g.addArete(i, i + 1);
@@ -43,6 +44,7 @@ public class MainReseau {
             System.out.println("Broadcast : "+R.getBroadcast());
             System.out.println("@IP PC id 100 : "+R.getMachineById(100).getIp());
             System.out.println("@ID PC ip 110.23.1.10 : "+R.getMachineByIp(new Ip(110, 23, 1, 10)).getId());
+            //Export.exportToJson(R,"reseau");
 
         } catch (BadSizeGrapheException e) {
             System.out.println(e);

@@ -29,7 +29,7 @@ var s = new sigma({
 });
 
 sigma.parsers.json(
-    'data/grex.json',
+    'data/reseau.json',
     s,
     function() {
         // this is needed in case the original JSON doesn't have color / size / x-y attributes

@@ -23,6 +23,7 @@ public class Machine extends Sommet {
      */
     public void setIp(Ip myip){
         this.myip = new Ip(myip);
+        this.setLabel(myip.toString()); // ajout du label
     }
 
     /**

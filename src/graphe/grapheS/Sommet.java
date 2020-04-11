@@ -4,21 +4,24 @@ import java.util.Vector;
 
 /**
  * Classe Sommet
- * Possede en attribut une liste des sommets voisins
+ * Possede en attribut une liste des sommets voisins et un label
  */
 public class Sommet {
 
     private int id;
     private Vector<Sommet> voisins=new Vector<>();
     private boolean flag = false;
+    private String label;
 
     /**
      * Constructeur d'un sommet
      * @param id Le numero du sommet
+     * @throws IllegalArgumentException Valeur de sommet negative
      */
     public Sommet(int id) throws IllegalArgumentException {
         if(id < 0) throw new IllegalArgumentException("Valeur de sommet negative impossible");
         this.id = id;
+        this.label = Integer.toString(id);
     }
 
     /**
@@ -38,6 +41,18 @@ public class Sommet {
      * @return Vecteur voisins
      */
     public Vector<Sommet> getVoisins() { return this.voisins; }
+
+    /**
+     * Getter du label
+     * @return Valeur du label
+     */
+    public String getLabel() { return label; }
+
+    /**
+     * Setter du label
+     * @param label Valeur du label
+     */
+    public void setLabel(String label) { this.label = label; }
 
     /**
      * Getter de l'id du sommet

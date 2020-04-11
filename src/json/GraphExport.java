@@ -2,13 +2,14 @@ package json;
 
 import graphe.grapheS.GraphS;
 import graphe.grapheS.Sommet;
+import graphe.grapheS.reseau.Machine;
 
 import java.util.Vector;
 
 /**
  * Classe de graphe adaptee a l'export (sommets et aretes)
  */
-public class GraphExport {
+public class GraphExport <S extends Sommet>{
 
     private Vector<Node> nodes;
     private Vector<Edge> edges;
@@ -17,11 +18,11 @@ public class GraphExport {
      * Constructeur de GraphExport
      * @param graphs Instance de GraphS a transformer en GraphExport
      */
-    public GraphExport(GraphS<Sommet> graphs){
+    public GraphExport(GraphS<S> graphs){
         this.nodes = new Vector<>();
         this.edges = new Vector<>();
         for(int i = 0; i < graphs.getTaille(); i++){
-            this.nodes.add(new Node(i));
+            this.nodes.add(new Node(i,graphs.getSommets().get(i).getLabel()));
         }
 
         int x = 0;
