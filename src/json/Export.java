@@ -23,28 +23,22 @@ public class Export {
         graphe.addArete(1,3);
         graphe.addArete(4,0);
 
-        GraphExport grex = new GraphExport(graphe);
-        System.out.println(grex.toString());
-
-        Gson gson = new Gson();
-
-        String json = gson.toJson(grex);
-
-        System.out.println(json);
-
-        // Ecriture dans un fichier export.json
-        try (FileWriter writer = new FileWriter("export.json")) {
-            gson.toJson(grex, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Export.exportToJson(graphe,"export");
     }
 
     /**
      * Methode statique permettant l'export au format JSON
      * @param graphS Le graphe a exporter
+     * @param nom Nom du fichier json
      */
-    public static void exportToJson(GraphS graphS){
-        // TODO: Ajout fonction export
+    public static void exportToJson(GraphS graphS, String nom){
+        GraphExport grex = new GraphExport(graphS);
+        Gson gson = new Gson();
+
+        try (FileWriter writer = new FileWriter(nom+".json")) {
+            gson.toJson(grex, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

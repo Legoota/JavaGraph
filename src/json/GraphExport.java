@@ -24,7 +24,6 @@ public class GraphExport {
             this.nodes.add(new Node(i));
         }
 
-
         int x = 0;
         for(int j = 0; j < graphs.getTaille(); j++){
             for(int k = 0; k < graphs.getSommets().get(j).getVoisins().size(); k++){
