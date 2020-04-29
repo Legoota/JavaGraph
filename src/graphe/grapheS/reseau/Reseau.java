@@ -3,7 +3,6 @@ package graphe.grapheS.reseau;
 import exceptions.BadIpException;
 import exceptions.BadSizeGrapheException;
 import graphe.grapheS.GraphS;
-
 import java.util.Vector;
 
 /**

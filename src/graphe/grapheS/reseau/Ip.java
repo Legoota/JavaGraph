@@ -101,6 +101,20 @@ public class Ip implements Comparable<Ip>{
     }
 
     /**
+     * Méthode qui renvoie le reseau auquel appartient l'ip en fonction de son masque
+     * @param masque Masque de l'adresse ip
+     * @return Adresse ip du reseau
+     */
+    public Ip getReseau(Ip masque){
+        A = this.A & masque.A;
+        B = this.B & masque.B;
+        C = this.C & masque.C;
+        D = this.D & masque.D;
+        Ip network = new Ip(A, B, C, D);
+        return network;
+    }
+
+    /**
      * Methode pour incrementer une adresse ip
      */
     public void increment() {
