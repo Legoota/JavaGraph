@@ -106,12 +106,7 @@ public class Ip implements Comparable<Ip>{
      * @return Adresse ip du reseau
      */
     public Ip getReseau(Ip masque){
-        A = this.A & masque.A;
-        B = this.B & masque.B;
-        C = this.C & masque.C;
-        D = this.D & masque.D;
-        Ip network = new Ip(A, B, C, D);
-        return network;
+        return new Ip(this.A & masque.A,this.B & masque.B,this.C & masque.C,this.D & masque.D);
     }
 
     /**
