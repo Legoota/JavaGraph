@@ -54,7 +54,6 @@ public class MainReseau {
         Ip machine = new Ip(192, 168, 1, 1);
         Ip masque = new Ip(255, 255, 0, 0);
         System.out.print("Le reseau de la machine "+machine+" (masque : "+masque+") est : ");
-        System.out.println(machine.getReseau(masque));
 
     }
 }

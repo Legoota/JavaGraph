@@ -12,6 +12,7 @@ public class Reseau extends GraphS<Machine> {
 
     private Ip reseau;
     private Ip broadcast;
+    private Ip masque;
 
     /**
      * Constructeur d'un GraphS utilisant des Machines.

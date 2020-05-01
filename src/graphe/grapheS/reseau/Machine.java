@@ -33,4 +33,13 @@ public class Machine extends Sommet {
     public Ip getIp(){
         return this.myip;
     }
+
+    /**
+     * Méthode qui renvoie le reseau de la machine en fonction de son masque
+     * @param masque Masque
+     * @return Adresse du reseau de la machine
+     */
+    public Ip getReseau(Ip masque){
+        return new Ip(this.myip.getA() & masque.getA(),this.myip.getB() & masque.getB(),this.myip.getC() & masque.getC(),this.myip.getD() & masque.getD());
+    }
 }
