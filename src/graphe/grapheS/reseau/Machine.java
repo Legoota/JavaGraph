@@ -35,7 +35,7 @@ public class Machine extends Sommet {
     }
 
     /**
-     * Méthode qui renvoie le reseau de la machine en fonction de son masque
+     * Methode qui renvoie le reseau de la machine en fonction de son masque
      * @param masque Masque
      * @return Adresse du reseau de la machine
      */

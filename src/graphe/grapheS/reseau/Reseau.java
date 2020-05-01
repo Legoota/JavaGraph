@@ -47,19 +47,34 @@ public class Reseau extends GraphS<Machine> {
         if(partieHote < 8){
             this.reseau = new Ip(ip.getA(),ip.getB(),ip.getC(),(int)(ip.getD()-ip.getD()%(Math.pow(2,partieHote))));
             this.broadcast = new Ip(ip.getA(),ip.getB(),ip.getC(),(int)(ip.getD()-ip.getD()%(Math.pow(2,partieHote))+Math.pow(2,partieHote)-1));
+            this.masque = new Ip(255,255,255,getValDecimaleOctet(masque-24));
         }
         else if (partieHote<16) {
             this.reseau = new Ip(ip.getA(),ip.getB(),(int)(ip.getC()-ip.getC()%(Math.pow(2, partieHote-8))),0);
             this.broadcast = new Ip(ip.getA(),ip.getB(),(int)(ip.getC()-ip.getC()%(Math.pow(2, partieHote-8))+Math.pow(2, partieHote-8)-1),255);
+            this.masque = new Ip(255,255,getValDecimaleOctet(masque-16),0);
         }
         else if (partieHote<24) {
             this.reseau = new Ip(ip.getA(),(int)(ip.getB()-ip.getB()%(Math.pow(2, partieHote-16))),0,0);
             this.broadcast = new Ip(ip.getA(),(int)(ip.getB()-ip.getB()%(Math.pow(2, partieHote-16))+Math.pow(2, partieHote-16)-1),255,255);
+            this.masque = new Ip(255,getValDecimaleOctet(masque-8),0,0);
         }
         else {
             this.reseau = new Ip((int)(ip.getA()-ip.getA()%(Math.pow(2, partieHote-24))),0,0,0);
             this.broadcast = new Ip((int)(ip.getA()-ip.getA()%(Math.pow(2, partieHote-24))+Math.pow(2, partieHote-24)-1),255,255,255);
+            this.masque = new Ip(getValDecimaleOctet(masque),0,0,0);
         }
+    }
+
+    /**
+     * Methode permettant d'obtenir une valeur entre 0-255 a partir du nombre de bits a 1 (en partant du MSB)
+     * @param masq Nombre de bits a 1
+     * @return Valeur entre 0 et 255
+     */
+    private int getValDecimaleOctet(int masq){
+        int res = 0;
+        for(int i = masq; i > 0;i--) res += Math.pow(2,8-i);
+        return res;
     }
 
     /**
@@ -102,6 +117,14 @@ public class Reseau extends GraphS<Machine> {
      */
     public Ip getBroadcast() {
         return this.broadcast;
+    }
+
+    /**
+     * Getter de l'ip du masque du reseau
+     * @return IP du masque du réseau
+     */
+    public Ip getMasque() {
+        return this.masque;
     }
 
     /**

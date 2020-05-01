@@ -1,7 +1,7 @@
 package graphe.grapheS.reseau;
 
 /**
- * Classe qui gere des adresses IP
+ * Classe qui gere des adresses IP (ordre big-endian ou gros-boutisme)
  */
 public class Ip implements Comparable<Ip>{
 
