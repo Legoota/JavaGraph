@@ -1,8 +1,9 @@
 body {
   margin: 0;
+  background: #516975;
 }
 #graph-container {
-  top: 50px;
+  top: 150px;
   bottom: 50px;
   left: 50px;
   right: 50px;

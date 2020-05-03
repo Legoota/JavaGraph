@@ -45,14 +45,14 @@
 <script src="../src/misc/sigma.misc.bindEvents.js"></script>
 <script src="../src/misc/sigma.misc.bindDOMEvents.js"></script>
 <script src="../src/misc/sigma.misc.drawHovers.js"></script>
-<!-- End sigma imports -->
+<!-- End of sigma imports -->
 <!-- Start used plugins imports -->
 <script src="../plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
 <script src="../plugins/sigma.layout.forceAtlas2/worker.js"></script>
 <script src="../plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
 <script src="../plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
 <script src="../plugins/sigma.plugins.neighborhoods/sigma.plugins.neighborhoods.js"></script>
-<!-- End used plugins imports -->
+<!-- End of used plugins imports -->
 
 <!DOCTYPE html>
 <html>
@@ -66,7 +66,14 @@
   <body>
     <h2 class="center-align">Graph Visualizer</h2>
     <div id="container">
+      <div id="control-pane" class="container">
+        <h4 class="center-align" style="font-style:italic">Filters</h4>
+        <!-- filters placeholder -->
+      </div>
+
+      <div class="divider"></div>
       <div id="graph-container"></div>
+
     </div>
     <footer class="page-footer blue-grey darken-1">
       <div class="footer-copyright">
