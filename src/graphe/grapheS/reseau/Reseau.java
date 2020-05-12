@@ -24,7 +24,7 @@ public class Reseau extends GraphS<Machine> {
         if(taille < 0) throw new BadSizeGrapheException(taille);
         this.setTaille(taille);
         Vector<Machine> machines = new Vector<>();
-        for(int i = 0; i < taille; i++){ machines.add(new Machine(i)); }
+        for(int i = 0; i < taille; i++){ machines.add(new Machine(i, Machine.Type.PC)); }
         this.setSommets(machines);
     }
 
@@ -40,7 +40,7 @@ public class Reseau extends GraphS<Machine> {
         if(taille < 0) throw new BadSizeGrapheException(taille);
         this.setTaille(taille);
         Vector<Machine> machines = new Vector<>();
-        for(int i = 0; i < taille; i++){ machines.add(new Machine(i)); }
+        for(int i = 0; i < taille; i++){ machines.add(new Machine(i,Machine.Type.PC)); }
         this.setSommets(machines);
 
         int partieHote = 32 - masque;

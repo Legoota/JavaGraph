@@ -7,14 +7,36 @@ import graphe.grapheS.Sommet;
  */
 public class Machine extends Sommet {
 
+    enum Type {
+        PC("PC"),
+        ROUTER("ROUTEUR");
+
+    private String type;
+
+    Type(String type){
+        this.type = type;
+    }
+
+    public String toString(){
+        return this.type;
+    }
+
+    public String getType(){
+        return this.type;
+    }
+    }
+
     private Ip myip;
+    private Type type;
 
     /**
      * Constructeur d'un sommet similaire a celui d'un simple sommet
      * @param id Le numero du sommet
+     * @param type True: type de la machine = routeur / False: type de la machine = PC => pas evolutif
      */
-    public Machine(int id) {
+    public Machine(int id, Type type) {
         super(id);
+        this.type = type;
     }
 
     /**
@@ -32,6 +54,14 @@ public class Machine extends Sommet {
      */
     public Ip getIp(){
         return this.myip;
+    }
+
+    /**
+     * Getter du type de la machine
+     * @return le type de la machine
+     */
+    public Type getType(){
+        return this.type;
     }
 
     /**
