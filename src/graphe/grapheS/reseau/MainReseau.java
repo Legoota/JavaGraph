@@ -59,6 +59,8 @@ public class MainReseau {
         System.out.println("@Reseau: "+R.getReseau());
         System.out.println("@Broad: "+R.getBroadcast());
         System.out.println("@Masque: "+R.getMasque());
-
+        R.DHCP();
+        R.getMachineById(0).printLogs();
+        R.printLogs();
     }
 }

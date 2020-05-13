@@ -3,6 +3,10 @@ package graphe.grapheS.reseau;
 import exceptions.BadIpException;
 import exceptions.BadSizeGrapheException;
 import graphe.grapheS.GraphS;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -13,6 +17,7 @@ public class Reseau extends GraphS<Machine> {
     private Ip reseau;
     private Ip broadcast;
     private Ip masque;
+    private ArrayList<String> logs;
 
     /**
      * Constructeur d'un GraphS utilisant des Machines.
@@ -26,6 +31,8 @@ public class Reseau extends GraphS<Machine> {
         Vector<Machine> machines = new Vector<>();
         for(int i = 0; i < taille; i++){ machines.add(new Machine(i, Machine.Type.PC)); }
         this.setSommets(machines);
+        this.logs = new ArrayList<>();
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Creation d'un reseau de taille "+this.getTaille());
     }
 
     /**
@@ -64,6 +71,8 @@ public class Reseau extends GraphS<Machine> {
             this.broadcast = new Ip((int)(ip.getA()-ip.getA()%(Math.pow(2, partieHote-24))+Math.pow(2, partieHote-24)-1),255,255,255);
             this.masque = new Ip(getValDecimaleOctet(masque),0,0,0);
         }
+        this.logs = new ArrayList<>();
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Creation d'un reseau de taille "+this.getTaille()+", d'adresse "+ip.toString()+"/"+masque);
     }
 
     /**
@@ -140,10 +149,30 @@ public class Reseau extends GraphS<Machine> {
             if(m.getIp() == null){
                 while(machines.stream().anyMatch(a -> ipCourant.equals(a.getIp()))){
                     ipCourant.increment();
-                    if(ipCourant.equals(this.broadcast)) throw new BadIpException(this.broadcast);
+                    if(ipCourant.equals(this.broadcast)){
+                        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Erreur DHCP : l'adresse IP traitee est identique a l'adresse de broadcast");
+                        throw new BadIpException(this.broadcast);
+                    }
                 }
                 m.setIp(ipCourant);
             }
         }
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Realisation du protocole DHCP");
+    }
+
+    /**
+     * Getteur de la liste des logs du reseau
+     * @return Liste des logs du reseau
+     */
+    public ArrayList<String> getLogs(){
+        return this.logs;
+    }
+
+    /**
+     * Affichage de la liste des logs du reseau
+     */
+    public void printLogs(){
+        System.out.println("Liste des logs du reseau : "+"@Reseau : "+this.reseau.toString()+", @Broad : "+this.broadcast.toString()+", @Masque : "+this.masque.toString());
+        for(String l: this.logs) System.out.println(l);
     }
 }

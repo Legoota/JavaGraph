@@ -13,7 +13,7 @@ using the Java language and graph theory.
 ### Features
 
 ###### TBA:
-* Customize Machine class with:logs, auth with ENUM & more
+* Customize Machine class
 * Add ping method using network ip addresses
 * Routing
 
@@ -29,6 +29,7 @@ using the Java language and graph theory.
 * IP class
 * Machine class (IP) extending Sommet
 * DHCP Server
+* Machines and networks logs
 
 ---
 ### Installation
