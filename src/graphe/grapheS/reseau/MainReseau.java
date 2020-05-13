@@ -60,7 +60,10 @@ public class MainReseau {
         System.out.println("@Broad: "+R.getBroadcast());
         System.out.println("@Masque: "+R.getMasque());
         R.DHCP();
-        R.getMachineById(0).printLogs();
-        R.printLogs();
+        //R.getMachineById(0).printLogs();
+        //R.printLogs();
+        System.out.println("M1: "+R.getMachineById(0).toString());
+        System.out.println("M2:"+R.getMachineById(1).toString());
+        System.out.println("Ping ? : "+R.ping(R.getMachineById(0),R.getMachineById(1)));
     }
 }

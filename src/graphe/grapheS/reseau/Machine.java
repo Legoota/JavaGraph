@@ -111,4 +111,9 @@ public class Machine extends Sommet {
         System.out.println("Liste des logs de la machine : "+this.type.getType()+" "+this.getId());
         for(String l: this.logs) System.out.println(l);
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+"\n@IP : "+this.myip + "\nType : " + this.type.toString();
+    }
 }

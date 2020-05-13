@@ -175,4 +175,14 @@ public class Reseau extends GraphS<Machine> {
         System.out.println("Liste des logs du reseau : "+"@Reseau : "+this.reseau.toString()+", @Broad : "+this.broadcast.toString()+", @Masque : "+this.masque.toString());
         for(String l: this.logs) System.out.println(l);
     }
+
+    /**
+     * Fonction de ping: renvoie true si les deux machines se pingent, faux sinon.
+     * @param source Machine emettrice du ping
+     * @param dest Machine destination du ping
+     * @return True si ping OK, false sinon
+     */
+    public boolean ping(Machine source, Machine dest){
+        return source.getReseau(this.masque).equals(dest.getReseau(this.masque));
+    }
 }

@@ -2,7 +2,6 @@ package json;
 
 import graphe.grapheS.GraphS;
 import graphe.grapheS.Sommet;
-import graphe.grapheS.reseau.Machine;
 
 import java.util.Vector;
 
