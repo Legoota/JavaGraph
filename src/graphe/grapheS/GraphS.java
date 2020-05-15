@@ -45,6 +45,16 @@ public class GraphS <S extends Sommet> implements Graphe {
     }
 
     /**
+     * Methode ajoutant un sommet a la liste de sommets
+     * @param sommet Le sommet a ajouter
+     */
+    public void addSommet(S sommet) throws IllegalArgumentException{
+        if(this.sommets.stream().anyMatch(s -> s.getId() == (sommet.getId()))) throw new IllegalArgumentException("Sommet deja existant");
+        this.sommets.add(sommet);
+        this.taille++;
+    }
+
+    /**
      * Getter permettant de recuperer la taille du graphe
      * @return La taille du graphe
      */

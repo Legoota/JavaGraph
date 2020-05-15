@@ -177,6 +177,16 @@ public class Reseau extends GraphS<Machine> {
     }
 
     /**
+     * Methode ajoutant une machine au reseau, puis appelle la fonction DHCP pour lui attribuer une adresse IP
+     * @param m La machine a ajouter
+     */
+    public void addMachine(Machine m){
+        this.addSommet(m);
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Ajout machine "+m.getId());
+        this.DHCP();
+    }
+
+    /**
      * Fonction de ping: renvoie true si les deux machines se pingent, faux sinon.
      * @param source Machine emettrice du ping
      * @param dest Machine destination du ping

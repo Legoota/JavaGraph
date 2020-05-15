@@ -65,5 +65,8 @@ public class MainReseau {
         System.out.println("M1: "+R.getMachineById(0).toString());
         System.out.println("M2:"+R.getMachineById(1).toString());
         System.out.println("Ping ? : "+R.ping(R.getMachineById(0),R.getMachineById(1)));
+        Machine m = new Machine(15,Machine.Type.PC);
+        R.addMachine(m);
+        System.out.println("NOUVEAU RESEAU: "+R.toString());
     }
 }
