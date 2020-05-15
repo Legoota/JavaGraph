@@ -18,7 +18,7 @@ using the Java language and graph theory.
 * Router network then has subnetworks of PCs
 * Add ping method using network ip addresses
 * Add Shortest path method (Dijkstra, BFS ?)
-* Add addMachine method (Network Class) -> calls DHCP method afterwards
+* Add addMachine method (Network Class) &rarr; calls DHCP method afterwards
 
 ###### Working:
 * Graph using adjacency matrices
