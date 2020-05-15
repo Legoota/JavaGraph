@@ -13,9 +13,12 @@ using the Java language and graph theory.
 ### Features
 
 ###### TBA:
-* Customize Machine class
+* Add DHCP call from Machine class
+* Create "Internet" class that contains a Router Network
+* Router network then has subnetworks of PCs
 * Add ping method using network ip addresses
-* Routing
+* Add Shortest path method (Dijkstra, BFS ?)
+* Add addMachine method (Network Class) -> calls DHCP method afterwards
 
 ###### Working:
 * Graph using adjacency matrices
