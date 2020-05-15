@@ -13,7 +13,6 @@ using the Java language and graph theory.
 ### Features
 
 ###### TBA:
-* Add DHCP call from Machine class
 * Create "Internet" class that contains a Router Network
 * Router network then has subnetworks of PCs
 * Add ping method using network ip addresses
