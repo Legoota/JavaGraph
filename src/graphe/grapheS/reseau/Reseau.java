@@ -187,6 +187,24 @@ public class Reseau extends GraphS<Machine> {
     }
 
     /**
+     * Methode supprimant une machine du reseau
+     * @param m La machine a supprimer
+     */
+    public void deleteMachine(Machine m){
+        this.deleteSommet(m);
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Suppression machine "+m.getId());
+    }
+
+    /**
+     * Methode supprimant une machine du reseau par son id
+     * @param id Id de la machine a supprimer
+     */
+    public void deleteMachine(int id) {
+        this.deleteSommet(id);
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()) + " : Suppression machine " + id);
+    }
+
+    /**
      * Fonction de ping: renvoie true si les deux machines se pingent, faux sinon.
      * @param source Machine emettrice du ping
      * @param dest Machine destination du ping

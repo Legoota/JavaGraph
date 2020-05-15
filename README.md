@@ -18,7 +18,6 @@ using the Java language and graph theory.
 * Router network then has subnetworks of PCs
 * Add ping method using network ip addresses
 * Add Shortest path method (Dijkstra, BFS ?)
-* Add removeMachine method (Network Class)
 
 ###### Working:
 * Graph using adjacency matrices

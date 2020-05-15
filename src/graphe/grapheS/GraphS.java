@@ -2,6 +2,7 @@ package graphe.grapheS;
 
 import exceptions.BadSizeGrapheException;
 import graphe.Graphe;
+import graphe.grapheS.reseau.Machine;
 
 import java.util.LinkedList;
 import java.util.Vector;
@@ -55,6 +56,32 @@ public class GraphS <S extends Sommet> implements Graphe {
     }
 
     /**
+     * Methode supprimant un sommet de la liste de sommets
+     * @param sommet Le sommet a supprimer
+     * @return True si supprime, False sinon
+     */
+    public boolean deleteSommet(S sommet){
+        if(this.sommets.remove(sommet)) {
+            this.taille--;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Methode supprimant un sommet de la liste par son id
+     * @param id L'id du sommet a supprimer
+     * @return True si supprime, False sinon
+     */
+    public boolean deleteSommet(int id){
+        if(this.sommets.remove(getSommetbyId(id))) {
+            this.taille--;
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Getter permettant de recuperer la taille du graphe
      * @return La taille du graphe
      */
@@ -68,6 +95,19 @@ public class GraphS <S extends Sommet> implements Graphe {
      */
     public Vector<S> getSommets() {
         return this.sommets;
+    }
+
+    /**
+     * Methode permettant de recuperer un sommet par son id
+     * @param id L'id du sommet
+     * @return Le sommet
+     * @throws IllegalArgumentException Id pas valide
+     */
+    public Sommet getSommetbyId(int id) throws IllegalArgumentException {
+        for(Sommet s: this.sommets) {
+            if(s.getId() == id) return s;
+        }
+        throw new IllegalArgumentException("ID pas valide");
     }
 
     /**

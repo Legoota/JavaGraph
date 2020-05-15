@@ -28,8 +28,10 @@ public class MainGraphS {
         //GraphS bfs = graphe.BFS();
         //System.out.println(bfs.toString());
 
-        Sommet s = new Sommet(4);
-        graphe.addSommet(s);
+        Sommet s = new Sommet(10);
+        //graphe.addSommet(s);
+        System.out.println(graphe.toString());
+        System.out.println(graphe.deleteSommet(s));
         System.out.println(graphe.toString());
     }
 }

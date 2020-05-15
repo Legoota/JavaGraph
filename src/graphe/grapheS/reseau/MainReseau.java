@@ -68,5 +68,8 @@ public class MainReseau {
         Machine m = new Machine(15,Machine.Type.PC);
         R.addMachine(m);
         System.out.println("NOUVEAU RESEAU: "+R.toString());
+        R.deleteMachine(15);
+        System.out.println("NOUVEAU NOUVEAU RESEAU: "+R.toString());
+
     }
 }
