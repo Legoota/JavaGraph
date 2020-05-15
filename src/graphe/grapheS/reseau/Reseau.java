@@ -130,7 +130,7 @@ public class Reseau extends GraphS<Machine> {
 
     /**
      * Getter de l'ip du masque du reseau
-     * @return IP du masque du réseau
+     * @return IP du masque du reseau
      */
     public Ip getMasque() {
         return this.masque;
@@ -158,6 +158,26 @@ public class Reseau extends GraphS<Machine> {
             }
         }
         this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Realisation du protocole DHCP");
+    }
+
+    /**
+     * Methode simulant un serveur DHCP qui renvoie une adresse IP a la machine qui l'appelle
+     * @return Premiere adresse IP disponible
+     * @throws BadIpException Plus d'adresse IP libre dans le reseau
+     */
+    public Ip DHCPM() throws BadIpException {
+        Ip ipCourant = new Ip(this.reseau);
+        ipCourant.increment();
+        Vector<Machine> machines = this.getSommets();
+
+        while(machines.stream().anyMatch(a -> ipCourant.equals(a.getIp()))){
+            ipCourant.increment();
+            if(ipCourant.equals(this.broadcast)){
+                this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Erreur DHCP : plus d'adresses disponibles dans ce reseau");
+                throw new BadIpException(this.broadcast);
+            }
+        }
+        return ipCourant;
     }
 
     /**

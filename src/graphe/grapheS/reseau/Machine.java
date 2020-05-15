@@ -63,12 +63,13 @@ public class Machine extends Sommet {
 
     /**
      * Setter de l'ip de la machine
-     * @param myip l'ip de la machine
+     * @param ip l'ip de la machine
      */
-    public void setIp(Ip myip){
-        this.myip = new Ip(myip);
-        this.setLabel(myip.toString()); // ajout du label
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Ajout IP : "+this.getIp());
+    public void setIp(Ip ip){
+        if(this.myip == null) this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Ajout IP : "+ip);
+        this.myip = new Ip(ip);
+        this.setLabel(ip.toString()); // ajout du label
+
     }
 
     /**
@@ -94,6 +95,16 @@ public class Machine extends Sommet {
      */
     public Ip getReseau(Ip masque){
         return new Ip(this.myip.getA() & masque.getA(),this.myip.getB() & masque.getB(),this.myip.getC() & masque.getC(),this.myip.getD() & masque.getD());
+    }
+
+    /**
+     * Methode de DHCM permettant d'attribuer une nouvelle adresse IP a partir de la liste des adresses IP du reseau
+     * @param r Le reseau auquel appartient la machine
+     */
+    public void DHCPM(Reseau r){
+        Ip newIp = r.DHCPM();
+        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Appel DHCP : Attribution de l'adresse IP : " + newIp);
+        this.setIp(newIp);
     }
 
     /**

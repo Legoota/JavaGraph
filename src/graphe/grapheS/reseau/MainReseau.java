@@ -60,16 +60,15 @@ public class MainReseau {
         System.out.println("@Broad: "+R.getBroadcast());
         System.out.println("@Masque: "+R.getMasque());
         R.DHCP();
-        //R.getMachineById(0).printLogs();
-        //R.printLogs();
-        System.out.println("M1: "+R.getMachineById(0).toString());
-        System.out.println("M2:"+R.getMachineById(1).toString());
-        System.out.println("Ping ? : "+R.ping(R.getMachineById(0),R.getMachineById(1)));
-        Machine m = new Machine(15,Machine.Type.PC);
-        R.addMachine(m);
-        System.out.println("NOUVEAU RESEAU: "+R.toString());
-        R.deleteMachine(15);
-        System.out.println("NOUVEAU NOUVEAU RESEAU: "+R.toString());
 
+        Machine m = new Machine(15,Machine.Type.PC);
+        Machine m2 = new Machine(20,Machine.Type.PC);
+        R.addMachine(m);
+        R.addMachine(m2);
+        System.out.println("NOUVEAU RESEAU: "+R.toString());
+        m.DHCPM(R);
+        m2.DHCPM(R);
+        System.out.println(m2.getIp().toString());
+        m2.printLogs();
     }
 }
