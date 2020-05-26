@@ -67,10 +67,10 @@ public class GraphS <S extends Sommet> implements Graphe {
      * @return True si supprime, False sinon
      */
     public boolean deleteSommet(int id){
+        for(Sommet s: this.sommets){
+            if(s.getVoisins().contains(getSommetbyId(id))) deleteArete(id, s.getId());
+        }
         if(this.sommets.remove(getSommetbyId(id))) {
-            for(Sommet s: this.sommets){
-                if(s.getVoisins().contains(getSommetbyId(id))) deleteArete(id, s.getId());
-            }
             this.taille--;
             return true;
         }
@@ -95,7 +95,7 @@ public class GraphS <S extends Sommet> implements Graphe {
      * @param i Id du premier sommet
      * @param j Id du deuxieme sommet
      * @return True si une arete a ete supprimee, false sinon
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Un des sommets est negatif
      */
     public boolean deleteArete(int i, int j) throws IllegalArgumentException {
         if(i < 0 || j < 0) throw new IllegalArgumentException("Un des sommets est negatif");

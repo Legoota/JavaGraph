@@ -1,6 +1,7 @@
 package tests;
 
 import graphe.grapheS.GraphS;
+import graphe.grapheS.Sommet;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -96,6 +97,67 @@ public class GraphSTest {
     @Test (expected = IllegalArgumentException.class)
     public void distanceError() {
         graphe.distance(-1,1);
+        fail("Aurait du lancer IllegalArgumentException");
+    }
+
+    /**
+     * Test de suppression d'un sommet (a partir de l'objet sommet)
+     */
+    @Test
+    public void testDeleteSommetTrueFromSommet() { assertEquals(true,graphe.deleteSommet(graphe.getSommetbyId(5))); }
+    /**
+     * Test de suppression d'un sommet (a partir de l'ID du sommet)
+     */
+    @Test
+    public void testDeleteSommetTrueFromId() { assertEquals(true,graphe.deleteSommet(5)); }
+    @Test
+    public void testDeleteSommetFalseFromSommet() {
+        Sommet s = new Sommet(10);
+        assertEquals(false,graphe.deleteSommet(s));
+    }
+    /**
+     * Test de suppression d'un sommet (a partir de l'ID du sommet)
+     */
+    @Test (expected = IllegalArgumentException.class)
+    public void testDeleteSommetFalseFromId() {
+        Sommet s = new Sommet(10);
+        graphe.deleteSommet(10);
+        fail("Aurait du lancer IllegalArgumentException");
+    }
+    /**
+     * Test de suppression d'une arete (entre 2 sommets)
+     */
+    @Test
+    public void testDeleteAreteTrueFromSommets() { assertEquals(true,graphe.deleteArete(graphe.getSommetbyId(4),graphe.getSommetbyId(0))); }
+    /**
+     * Test de suppression d'une arete (entre 2 IDs de sommets)
+     */
+    @Test
+    public void testDeleteAreteTrueFromIds() { assertEquals(true,graphe.deleteArete(4,0)); }
+    /**
+     * Test de suppression d'une arete (entre 2 sommets)
+     */
+    @Test
+    public void testDeleteAreteFalseFromSommets() { assertEquals(false,graphe.deleteArete(graphe.getSommetbyId(4),graphe.getSommetbyId(1))); }
+    /**
+     * Test de suppression d'une arete (entre 2 IDs de sommets)
+     */
+    @Test
+    public void testDeleteAreteFalseFromIds() { assertEquals(false,graphe.deleteArete(4,1)); }
+
+    /**
+     * Test obtention sommet avec l'id : cas OK
+     */
+    @Test
+    public void testGetSommetByIdOk() {
+        assertEquals(new Sommet(3).getId(),graphe.getSommetbyId(3).getId());
+    }
+    /**
+     * Test obtention sommet avec l'id incorrecte : cas NO OK
+     */
+    @Test (expected = IllegalArgumentException.class)
+    public void testGetSommetByIdNOk() {
+        graphe.getSommetbyId(10);
         fail("Aurait du lancer IllegalArgumentException");
     }
 }

@@ -14,7 +14,7 @@ public class Machine extends Sommet {
     /**
      * Enum des differents types de machine
      */
-    enum Type {
+    public enum Type {
         PC("PC"),
         ROUTER("ROUTEUR");
 
