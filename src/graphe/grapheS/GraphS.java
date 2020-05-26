@@ -46,22 +46,15 @@ public class GraphS <S extends Sommet> implements Graphe {
     }
 
     /**
-     * Methode ajoutant un sommet a la liste de sommets
-     * @param sommet Le sommet a ajouter
-     */
-    public void addSommet(S sommet) throws IllegalArgumentException{
-        if(this.sommets.stream().anyMatch(s -> s.getId() == (sommet.getId()))) throw new IllegalArgumentException("Sommet deja existant");
-        this.sommets.add(sommet);
-        this.taille++;
-    }
-
-    /**
      * Methode supprimant un sommet de la liste de sommets
      * @param sommet Le sommet a supprimer
      * @return True si supprime, False sinon
      */
     public boolean deleteSommet(S sommet){
         if(this.sommets.remove(sommet)) {
+            for(Sommet s: this.sommets){
+                if(s.getVoisins().contains(sommet)) deleteArete(s,sommet);
+            }
             this.taille--;
             return true;
         }
@@ -75,11 +68,53 @@ public class GraphS <S extends Sommet> implements Graphe {
      */
     public boolean deleteSommet(int id){
         if(this.sommets.remove(getSommetbyId(id))) {
+            for(Sommet s: this.sommets){
+                if(s.getVoisins().contains(getSommetbyId(id))) deleteArete(id, s.getId());
+            }
             this.taille--;
             return true;
         }
         return false;
     }
+
+    /**
+     * Methode supprimant une arete entre deux sommets
+     * @param i Le premier sommet
+     * @param j Le second sommet
+     * @return True si une arete a ete supprimee, false sinon
+     */
+    public boolean deleteArete(Sommet i, Sommet j){
+        boolean res, res2;
+        res = i.getVoisins().remove(j);
+        res2 = j.getVoisins().remove(i);
+        return  res || res2;
+    }
+
+    /**
+     * Methode supprimant une arete entre deux sommets
+     * @param i Id du premier sommet
+     * @param j Id du deuxieme sommet
+     * @return True si une arete a ete supprimee, false sinon
+     * @throws IllegalArgumentException
+     */
+    public boolean deleteArete(int i, int j) throws IllegalArgumentException {
+        if(i < 0 || j < 0) throw new IllegalArgumentException("Un des sommets est negatif");
+        boolean res, res2;
+        res = this.getSommetbyId(i).getVoisins().remove(this.getSommetbyId(j));
+        res2 = this.getSommetbyId(j).getVoisins().remove(this.getSommetbyId(i));
+        return res || res2;
+    }
+
+    /**
+     * Methode ajoutant un sommet a la liste de sommets
+     * @param sommet Le sommet a ajouter
+     */
+    public void addSommet(S sommet) throws IllegalArgumentException{
+        if(this.sommets.stream().anyMatch(s -> s.getId() == (sommet.getId()))) throw new IllegalArgumentException("Sommet deja existant");
+        this.sommets.add(sommet);
+        this.taille++;
+    }
+
 
     /**
      * Getter permettant de recuperer la taille du graphe
