@@ -1,236 +1,82 @@
 package graphe.grapheS.reseau;
 
 import exceptions.BadIpException;
-import exceptions.BadSizeGrapheException;
-import graphe.grapheS.GraphS;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Vector;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Classe correspondant a un reseau
+ * Classe representant un reseau de routeurs (reseau de reseau)
  */
-public class Reseau extends GraphS<Machine> {
+public class Reseau {
 
-    private Ip reseau;
-    private Ip broadcast;
-    private Ip masque;
-    private ArrayList<String> logs;
+    private int taille;
+    HashMap<Ip,Routeur> networks;
 
-    /**
-     * Constructeur d'un GraphS utilisant des Machines.
-     * @param taille La taille  du GraphS a creer
-     * @throws BadSizeGrapheException taille non valide (negative)
-     */
-    public Reseau(int taille) throws BadSizeGrapheException {
-        super();
-        if(taille < 0) throw new BadSizeGrapheException(taille);
-        this.setTaille(taille);
-        Vector<Machine> machines = new Vector<>();
-        for(int i = 0; i < taille; i++){ machines.add(new Machine(i, Machine.Type.PC)); }
-        this.setSommets(machines);
-        this.logs = new ArrayList<>();
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Creation d'un reseau de taille "+this.getTaille());
-    }
-
-    /**
-     * Constructeur qui cree un GraphS avec des sommets. Met a jour les attributs relatifs aux adresses dans le reseau
-     * @param taille Taille du GraphS a generer
-     * @param ip Une IP contenue dans la plage disponible pour ce reseau
-     * @param masque Le masque correspondant
-     * @throws BadSizeGrapheException taille non valide (negative)
-     */
-    public Reseau(int taille,Ip ip, int masque) throws BadSizeGrapheException {
-        super();
-        if(taille < 0) throw new BadSizeGrapheException(taille);
-        this.setTaille(taille);
-        Vector<Machine> machines = new Vector<>();
-        for(int i = 0; i < taille; i++){ machines.add(new Machine(i,Machine.Type.PC)); }
-        this.setSommets(machines);
-
-        int partieHote = 32 - masque;
-        if(partieHote < 8){
-            this.reseau = new Ip(ip.getA(),ip.getB(),ip.getC(),(int)(ip.getD()-ip.getD()%(Math.pow(2,partieHote))));
-            this.broadcast = new Ip(ip.getA(),ip.getB(),ip.getC(),(int)(ip.getD()-ip.getD()%(Math.pow(2,partieHote))+Math.pow(2,partieHote)-1));
-            this.masque = new Ip(255,255,255,getValDecimaleOctet(masque-24));
+    public Reseau(int taille, int tailleRouteurs) throws BadIpException {
+        this.taille = taille;
+        this.networks = new HashMap<>();
+        Ip exts = new Ip(1,1,1,0);
+        int inc = 0;
+        while(inc < taille && exts.compareTo(new Ip(0,0,0,0)) > 0){
+            Ip ext = new Ip(1,1,1,0); // Eviter les references a l'instance exts
+            ext.setIp(exts); // Si on place exts directement dans la hashmap, toutes les valeurs a l'interieur seront changees
+            networks.put(ext,new Routeur(inc,tailleRouteurs,ext,new Ip(192,168,1,0),24));
+            inc++;
+            exts.increment();
         }
-        else if (partieHote<16) {
-            this.reseau = new Ip(ip.getA(),ip.getB(),(int)(ip.getC()-ip.getC()%(Math.pow(2, partieHote-8))),0);
-            this.broadcast = new Ip(ip.getA(),ip.getB(),(int)(ip.getC()-ip.getC()%(Math.pow(2, partieHote-8))+Math.pow(2, partieHote-8)-1),255);
-            this.masque = new Ip(255,255,getValDecimaleOctet(masque-16),0);
-        }
-        else if (partieHote<24) {
-            this.reseau = new Ip(ip.getA(),(int)(ip.getB()-ip.getB()%(Math.pow(2, partieHote-16))),0,0);
-            this.broadcast = new Ip(ip.getA(),(int)(ip.getB()-ip.getB()%(Math.pow(2, partieHote-16))+Math.pow(2, partieHote-16)-1),255,255);
-            this.masque = new Ip(255,getValDecimaleOctet(masque-8),0,0);
-        }
-        else {
-            this.reseau = new Ip((int)(ip.getA()-ip.getA()%(Math.pow(2, partieHote-24))),0,0,0);
-            this.broadcast = new Ip((int)(ip.getA()-ip.getA()%(Math.pow(2, partieHote-24))+Math.pow(2, partieHote-24)-1),255,255,255);
-            this.masque = new Ip(getValDecimaleOctet(masque),0,0,0);
-        }
-        this.logs = new ArrayList<>();
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Creation d'un reseau de taille "+this.getTaille()+", d'adresse "+ip.toString()+"/"+masque);
     }
 
     /**
-     * Methode permettant d'obtenir une valeur entre 0-255 a partir du nombre de bits a 1 (en partant du MSB)
-     * @param masq Nombre de bits a 1
-     * @return Valeur entre 0 et 255
+     * Getter de la taille du reseau
+     * @return La taille du reseau
      */
-    private int getValDecimaleOctet(int masq){
-        int res = 0;
-        for(int i = masq; i > 0;i--) res += Math.pow(2,8-i);
-        return res;
+    public int getTaille() {
+        return this.taille;
     }
 
     /**
-     * Getter d'une Machine avec ID
-     * @param id L'ID de la Machine
-     * @return La Machine d'ID id
-     * @throws IllegalArgumentException Id invalide (n'est pas dans la liste de sommets)
+     * Methode permettant l'ajout d'un routeur au reseau
+     * @param r Le routeur a ajouter
+     * @throws IllegalArgumentException Adresse IP Ext deja presente dans le reseau
      */
-    public Machine getMachineById(int id) throws IllegalArgumentException {
-        for(Machine m: this.getSommets()) {
-            if(m.getId() == id) return m;
-        }
-        throw new IllegalArgumentException("ID pas valide");
+    public void addRouteur(Routeur r) throws IllegalArgumentException {
+        if(networks.containsKey(r.getExt())) throw new IllegalArgumentException("Adresse IP Ext deja attribuee dans le reseau, ajout impossible");
+        networks.put(r.getExt(),r);
     }
 
     /**
-     * Getter d'une Machine avec IP
-     * @param ip L'IP de la Machine
-     * @return La Machine d'IP ip
-     * @throws BadIpException Ip invalide (n'est pas dans la liste de sommets)
+     * Methode permettant d'obtenir le routeur possedant l'adresse IP donnee en parametre
+     * @param ip L'adresse IP du routeur
+     * @return Le routeur
+     * @throws IllegalArgumentException Aucun routeur trouve pour cette adresse IP
      */
-    public Machine getMachineByIp(Ip ip) throws BadIpException {
-        for(Machine m:this.getSommets()){
-            if(m.getIp().equals(ip)) return m;
-        }
-        throw new BadIpException(ip);
+    public Routeur getRouteurFromIp(Ip ip) throws IllegalArgumentException {
+        if(!networks.containsKey(ip)) throw new IllegalArgumentException("Pas de routeur possedant cette adresse IP");
+        return networks.get(ip);
+    }
+
+    public boolean deleteRouteur(Ip ip){
+        return networks.remove(ip) != null ? true : false;
+    }
+
+    public Routeur getRouteurFromId(int id) throws IllegalArgumentException{
+        Map.Entry<Ip,Routeur> res =  networks.entrySet().stream()
+                .filter(v -> v.getValue().getId() == id)
+                .findFirst().orElse(null);
+        if(res == null) throw new IllegalArgumentException("Pas de Routeur d'id "+id);
+        return res.getValue();
     }
 
     /**
-     * Getter de l'ip du reseau
-     * @return IP du reseau
+     * Methode toString
+     * @return String contenant les informations sur le reseau
      */
-    public Ip getReseau() {
-        return this.reseau;
-    }
-
-    /**
-     * Getter de l'ip de broadcast du reseau
-     * @return IP de broadcast du reseau
-     */
-    public Ip getBroadcast() {
-        return this.broadcast;
-    }
-
-    /**
-     * Getter de l'ip du masque du reseau
-     * @return IP du masque du reseau
-     */
-    public Ip getMasque() {
-        return this.masque;
-    }
-
-    /**
-     * Methode simulant un serveur DHCP qui attribue des adresses en fonction de l'ID des machines
-     */
-    public void DHCP() throws BadIpException {
-        Ip ipCourant = new Ip(this.reseau);
-        ipCourant.increment();
-        Vector<Machine> machines = this.getSommets();
-
-        for (Machine m : machines)
-        {
-            if(m.getIp() == null){
-                while(machines.stream().anyMatch(a -> ipCourant.equals(a.getIp()))){
-                    ipCourant.increment();
-                    if(ipCourant.equals(this.broadcast)){
-                        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Erreur DHCP : l'adresse IP traitee est identique a l'adresse de broadcast");
-                        throw new BadIpException(this.broadcast);
-                    }
-                }
-                m.setIp(ipCourant);
-            }
-        }
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Realisation du protocole DHCP");
-    }
-
-    /**
-     * Methode simulant un serveur DHCP qui renvoie une adresse IP a la machine qui l'appelle
-     * @return Premiere adresse IP disponible
-     * @throws BadIpException Plus d'adresse IP libre dans le reseau
-     */
-    public Ip DHCPM() throws BadIpException {
-        Ip ipCourant = new Ip(this.reseau);
-        ipCourant.increment();
-        Vector<Machine> machines = this.getSommets();
-
-        while(machines.stream().anyMatch(a -> ipCourant.equals(a.getIp()))){
-            ipCourant.increment();
-            if(ipCourant.equals(this.broadcast)){
-                this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Erreur DHCP : plus d'adresses disponibles dans ce reseau");
-                throw new BadIpException(this.broadcast);
-            }
-        }
-        return ipCourant;
-    }
-
-    /**
-     * Getteur de la liste des logs du reseau
-     * @return Liste des logs du reseau
-     */
-    public ArrayList<String> getLogs(){
-        return this.logs;
-    }
-
-    /**
-     * Affichage de la liste des logs du reseau
-     */
-    public void printLogs(){
-        System.out.println("Liste des logs du reseau : "+"@Reseau : "+this.reseau.toString()+", @Broad : "+this.broadcast.toString()+", @Masque : "+this.masque.toString());
-        for(String l: this.logs) System.out.println(l);
-    }
-
-    /**
-     * Methode ajoutant une machine au reseau, puis appelle la fonction DHCP pour lui attribuer une adresse IP
-     * @param m La machine a ajouter
-     */
-    public void addMachine(Machine m){
-        this.addSommet(m);
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Ajout machine "+m.getId());
-        this.DHCP();
-    }
-
-    /**
-     * Methode supprimant une machine du reseau
-     * @param m La machine a supprimer
-     */
-    public void deleteMachine(Machine m){
-        this.deleteSommet(m);
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Suppression machine "+m.getId());
-    }
-
-    /**
-     * Methode supprimant une machine du reseau par son id
-     * @param id Id de la machine a supprimer
-     */
-    public void deleteMachine(int id) {
-        this.deleteSommet(id);
-        this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()) + " : Suppression machine " + id);
-    }
-
-    /**
-     * Fonction de ping: renvoie true si les deux machines se pingent, faux sinon.
-     * @param source Machine emettrice du ping
-     * @param dest Machine destination du ping
-     * @return True si ping OK, false sinon
-     */
-    public boolean ping(Machine source, Machine dest){
-        return source.getReseau(this.masque).equals(dest.getReseau(this.masque));
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        res.append(this.taille+" routeurs.\n");
+        networks.forEach((k,v) -> res.append("Routeur "+v.getId()+" , @Ext: "+v.getExt()+" , @Reseau: "+v.getReseau()+" , taille: "+v.getTaille()+"\n"));
+        return res.toString();
     }
 }

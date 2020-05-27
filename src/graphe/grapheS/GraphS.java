@@ -2,7 +2,6 @@ package graphe.grapheS;
 
 import exceptions.BadSizeGrapheException;
 import graphe.Graphe;
-import graphe.grapheS.reseau.Machine;
 
 import java.util.LinkedList;
 import java.util.Vector;

@@ -16,7 +16,7 @@ public class Machine extends Sommet {
      */
     public enum Type {
         PC("PC"),
-        ROUTER("ROUTEUR");
+        TELEPHONE("TELEPHONE");
 
     private String type;
 
@@ -101,7 +101,7 @@ public class Machine extends Sommet {
      * Methode de DHCM permettant d'attribuer une nouvelle adresse IP a partir de la liste des adresses IP du reseau
      * @param r Le reseau auquel appartient la machine
      */
-    public void DHCPM(Reseau r){
+    public void DHCPM(Routeur r){
         Ip newIp = r.DHCPM();
         this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Appel DHCP : Attribution de l'adresse IP : " + newIp);
         this.setIp(newIp);

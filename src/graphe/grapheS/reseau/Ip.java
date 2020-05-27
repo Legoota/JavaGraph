@@ -34,6 +34,17 @@ public class Ip implements Comparable<Ip>{
     }
 
     /**
+     * Setter d'une adresse IP
+     * @param ip L'adresse IP
+     */
+    public void setIp(Ip ip){
+        this.A = ip.getA();
+        this.B = ip.getB();
+        this.C = ip.getC();
+        this.D = ip.getD();
+    }
+
+    /**
      * Getteur 1er octet
      * @return 1er octet
      */
@@ -63,6 +74,16 @@ public class Ip implements Comparable<Ip>{
      */
     public int getD() {
         return D;
+    }
+
+    /**
+     * Methode hashCode
+     * @return Code de hash de l'adresse IP
+     */
+    @Override
+    public int hashCode() {
+        String hash = ""+this.A + this.B + this.C + this.D;
+        return hash.hashCode();
     }
 
     /**

@@ -13,8 +13,7 @@ using the Java language and graph theory.
 ### Features
 
 ###### TBA:
-* Create "Internet" class that contains a Router Network
-* Router network then has subnetworks of PCs
+* Use *Composite design pattern* to create a network of networks (network of routers)
 * Add ping method using network ip addresses
 * Add Shortest path method (Dijkstra, BFS ?)
 
