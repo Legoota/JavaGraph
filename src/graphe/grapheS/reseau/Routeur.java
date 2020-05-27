@@ -238,6 +238,22 @@ public class Routeur extends GraphS<Machine> {
         return source.getReseau(this.masque).equals(dest.getReseau(this.masque));
     }
 
+    /**
+     * Methode permettant l'envoi de messages entre deux machines
+     * @param message Le message a transmettre
+     * @param expediteur L'expediteur du message
+     * @param destinataire Le destinataire du message
+     * @return True si le message a correctement ete envoye, false sinon
+     */
+    public boolean message(String message, Ip expediteur, Ip destinataire){
+        if(ping(getMachineByIp(expediteur),getMachineByIp(destinataire))){
+            Machine target = getMachineByIp(destinataire);
+            target.getMessage(message,expediteur);
+            return true;
+        }
+        else return false;
+    }
+
     @Override
     public String toString(){
         String res = "Routeur "+this.id+": \n";

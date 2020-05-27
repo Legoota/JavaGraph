@@ -66,6 +66,11 @@ public class MainRouteur {
         m.DHCPM(R);
         m2.DHCPM(R);
         System.out.println(m2.getIp().toString());
+
+        m.sendMessage("Test venant de M",R.getMachineById(20).getIp(),R);
+        System.out.println(m2.getMessagesFromIp(new Ip(192,0,0,13)));
         m2.printLogs();
+        m.sendMessage("Deuxieme test venant de M",R.getMachineById(20).getIp(),R);
+        m2.printMessages();;
     }
 }

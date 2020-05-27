@@ -13,6 +13,12 @@ public class Reseau {
     private int taille;
     HashMap<Ip,Routeur> networks;
 
+    /**
+     * Constructeur de la classe Reseau
+     * @param taille La taille du reseau
+     * @param tailleRouteurs La taille de chaque routeur
+     * @throws BadIpException Plus aucune adresse IP disponible pour l'ensemble des routeurs du reseau
+     */
     public Reseau(int taille, int tailleRouteurs) throws BadIpException {
         this.taille = taille;
         this.networks = new HashMap<>();
@@ -21,9 +27,26 @@ public class Reseau {
         while(inc < taille && exts.compareTo(new Ip(0,0,0,0)) > 0){
             Ip ext = new Ip(1,1,1,0); // Eviter les references a l'instance exts
             ext.setIp(exts); // Si on place exts directement dans la hashmap, toutes les valeurs a l'interieur seront changees
-            networks.put(ext,new Routeur(inc,tailleRouteurs,ext,new Ip(192,168,1,0),24));
+            this.networks.put(ext,new Routeur(inc,tailleRouteurs,ext,new Ip(192,168,1,0),24));
             inc++;
             exts.increment();
+        }
+        if(inc < taille){
+            System.out.println("Plus d'adresses IP disponibles pour tous les routeurs");
+            throw new BadIpException(exts);
+        }
+    }
+
+    /**
+     * Constructeur de la classe Reseau
+     * @param routeurs Le tableau de routeurs a ajouter au reseau
+     */
+    public Reseau(Routeur[] routeurs){
+        this.taille = routeurs.length;
+        this.networks = new HashMap<>();
+        for(Routeur r: routeurs){
+            if(this.networks.containsKey(r.getExt())) throw new IllegalArgumentException("Plusieurs routeurs ont la meme adresse externe");
+            this.networks.put(r.getExt(),r);
         }
     }
 
@@ -41,8 +64,8 @@ public class Reseau {
      * @throws IllegalArgumentException Adresse IP Ext deja presente dans le reseau
      */
     public void addRouteur(Routeur r) throws IllegalArgumentException {
-        if(networks.containsKey(r.getExt())) throw new IllegalArgumentException("Adresse IP Ext deja attribuee dans le reseau, ajout impossible");
-        networks.put(r.getExt(),r);
+        if(this.networks.containsKey(r.getExt())) throw new IllegalArgumentException("Adresse IP Ext deja attribuee dans le reseau, ajout impossible");
+        this.networks.put(r.getExt(),r);
     }
 
     /**
@@ -52,16 +75,27 @@ public class Reseau {
      * @throws IllegalArgumentException Aucun routeur trouve pour cette adresse IP
      */
     public Routeur getRouteurFromIp(Ip ip) throws IllegalArgumentException {
-        if(!networks.containsKey(ip)) throw new IllegalArgumentException("Pas de routeur possedant cette adresse IP");
-        return networks.get(ip);
+        if(!this.networks.containsKey(ip)) throw new IllegalArgumentException("Pas de routeur possedant cette adresse IP");
+        return this.networks.get(ip);
     }
 
+    /**
+     * Methode supprimant un routeur du reseau
+     * @param ip L'IP externe du routeur
+     * @return True si un routeur a ete supprime, false sinon
+     */
     public boolean deleteRouteur(Ip ip){
-        return networks.remove(ip) != null ? true : false;
+        return this.networks.remove(ip) != null;
     }
 
+    /**
+     * Methode permettant d'obtenir le routeur possedant l'ID donnee en parametre
+     * @param id L'ID du routeur a obtenir
+     * @return Le routeur
+     * @throws IllegalArgumentException Aucun routeur trouve pour cet ID
+     */
     public Routeur getRouteurFromId(int id) throws IllegalArgumentException{
-        Map.Entry<Ip,Routeur> res =  networks.entrySet().stream()
+        Map.Entry<Ip,Routeur> res =  this.networks.entrySet().stream()
                 .filter(v -> v.getValue().getId() == id)
                 .findFirst().orElse(null);
         if(res == null) throw new IllegalArgumentException("Pas de Routeur d'id "+id);
@@ -75,8 +109,8 @@ public class Reseau {
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
-        res.append(this.taille+" routeurs.\n");
-        networks.forEach((k,v) -> res.append("Routeur "+v.getId()+" , @Ext: "+v.getExt()+" , @Reseau: "+v.getReseau()+" , taille: "+v.getTaille()+"\n"));
+        res.append("Reseau de "+this.taille+" routeurs.\n");
+        this.networks.forEach((k,v) -> res.append("Routeur "+v.getId()+" , @Ext: "+v.getExt()+" , @Reseau: "+v.getReseau()+" , taille: "+v.getTaille()+"\n"));
         return res.toString();
     }
 }
