@@ -30,6 +30,8 @@ using the Java language and graph theory.
 * Machine class (IP) extending Sommet
 * DHCP Server
 * Machines and networks logs
+* Machine to machine instant messaging
+* Shortest path algorithm (based on BFS)
 
 ---
 ### Installation
@@ -45,7 +47,7 @@ Tools needed : [Node.js](https://nodejs.org/en/), [gjslint](https://developers.g
 * Install dependencies using *yarn* or *npm install* in the visualizer directory
 * Launch an http-server with *yarn start* or *npm start* in the visualizer directory
 * Place the JSON file in /graphVisualizer/visualizer/data/ folder
-* Choose which JSON to display by changing line 36 in visualizer.js
+* Choose which JSON to display by changing line 36 in /graphVisualizer/visualizer/visualizer.js
 * Go to the [visualizer.html](http://localhost:8000/visualizer/visualizer.html) page
 
 ---
