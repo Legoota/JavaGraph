@@ -11,6 +11,7 @@ public class Sommet {
     private int id;
     private Vector<Sommet> voisins=new Vector<>();
     private boolean flag = false;
+    private Vector<Sommet> chemin = new Vector<>();
     private String label;
 
     /**
@@ -35,6 +36,27 @@ public class Sommet {
      * @return Valeur du flag
      */
     public boolean getFlag() { return this.flag; }
+
+    /**
+     * Methode permettant d'ajouter un element au chemin
+     * @param s Le sommet a ajouter
+     */
+    public void addToChemin(Sommet s){
+        this.chemin.add(s);
+    }
+
+    /**
+     * Methode permettant de reinitialiser le chemin
+     */
+    public void resetChemin(){
+        this.chemin = new Vector<>();
+    }
+
+    /**
+     * Getter du vecteur chemin
+     * @return Le vecteur chemin
+     */
+    public Vector<Sommet> getChemin(){ return this.chemin; }
 
     /**
      * Getter du vecteur voisins
@@ -86,14 +108,35 @@ public class Sommet {
         return voisins.contains(s);
     }
 
+    /**
+     * Methode permettant de supprimer les chemins doublons
+     * @param source Le sommet de depart du chemin
+     */
+    public void removeRedundancies(Sommet source){
+        int redundancy = 0;
+        for(int i = 0; i<this.chemin.size(); i++)
+            if(this.chemin.get(i).getId() == source.getId()) redundancy++;
+
+        if(redundancy > 1){ // 2 si chemin en doublon, etc
+            Vector<Integer> dumpIds = new Vector<>();
+            boolean firstpath = false; // true si un premier chemin jusqu'au sommet de depart est atteint
+            for(int j = 0; j<this.chemin.size(); j++){
+                if(firstpath) dumpIds.add(j); // ajout du sommet a la liste des sommets a supprimer
+                if(this.chemin.get(j).getId() == source.getId()) firstpath = true; // le premier chemin est atteint
+            }
+            for(int k = dumpIds.size()-1;k>=0;k--) this.chemin.removeElementAt(dumpIds.get(k)); // suppression des sommets redondants
+        }
+    }
+
     @Override
     public String toString() {
         String str = String.valueOf(id);
+        /*
         if(this.voisins.size()>0){
             str += ": [";
             for (int i = 0; i < voisins.size() - 1; i++) str += voisins.get(i).id + ", ";
             str += voisins.get(voisins.size()-1).id + "]";
-        }
+        }*/
         return str;
     }
 }

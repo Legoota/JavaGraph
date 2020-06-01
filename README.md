@@ -15,7 +15,7 @@ using the Java language and graph theory.
 ###### TBA:
 * Use *Composite design pattern* to create a network of networks (network of routers)
 * Add ping method using network ip addresses
-* Add Shortest path method (Dijkstra, BFS ?)
+* Refine shortest path algorithm (currently not working everytime)
 
 ###### Working:
 * Graph using adjacency matrices
@@ -34,17 +34,18 @@ using the Java language and graph theory.
 ---
 ### Installation
 
-###### Java:
+###### Java project:
 * Clone the repository
 * Install Gson-2.8.5.jar dependency (for JSON export)
 * Launch using a Java compiler
-###### Visualizer:
+###### JS Visualizer:
 Tools needed : [Node.js](https://nodejs.org/en/), [gjslint](https://developers.google.com/closure/utilities/docs/linter_howto?hl=en), [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 * Clone the repository
 * Install Gson-2.8.5.jar dependency (for JSON export)
 * Install dependencies using *yarn* or *npm install* in the visualizer directory
 * Launch an http-server with *yarn start* or *npm start* in the visualizer directory
 * Place the JSON file in /graphVisualizer/visualizer/data/ folder
+* Choose which JSON to display by changing line 36 in visualizer.js
 * Go to the [visualizer.html](http://localhost:8000/visualizer/visualizer.html) page
 
 ---

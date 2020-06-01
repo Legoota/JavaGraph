@@ -2,6 +2,7 @@ package graphe.grapheS;
 
 import exceptions.BadSizeGrapheException;
 import graphe.Graphe;
+import graphe.grapheS.reseau.Machine;
 
 import java.util.LinkedList;
 import java.util.Vector;
@@ -42,6 +43,16 @@ public class GraphS <S extends Sommet> implements Graphe {
      */
     public void setSommets(Vector<S> sommets) {
         this.sommets = sommets;
+    }
+
+    /**
+     * Methode ajoutant un sommet a la liste de sommets
+     * @param sommet Le sommet a ajouter
+     */
+    public void addSommet(S sommet) throws IllegalArgumentException{
+        if(this.sommets.stream().anyMatch(s -> s.getId() == (sommet.getId()))) throw new IllegalArgumentException("Sommet deja existant");
+        this.sommets.add(sommet);
+        this.taille++;
     }
 
     /**
@@ -103,17 +114,6 @@ public class GraphS <S extends Sommet> implements Graphe {
         res2 = this.getSommetbyId(j).getVoisins().remove(this.getSommetbyId(i));
         return res || res2;
     }
-
-    /**
-     * Methode ajoutant un sommet a la liste de sommets
-     * @param sommet Le sommet a ajouter
-     */
-    public void addSommet(S sommet) throws IllegalArgumentException{
-        if(this.sommets.stream().anyMatch(s -> s.getId() == (sommet.getId()))) throw new IllegalArgumentException("Sommet deja existant");
-        this.sommets.add(sommet);
-        this.taille++;
-    }
-
 
     /**
      * Getter permettant de recuperer la taille du graphe
@@ -215,6 +215,55 @@ public class GraphS <S extends Sommet> implements Graphe {
         for(int j = 0; j < this.taille; j++) this.sommets.get(j).setFlag(false);
 
         return bfs;
+    }
+
+    /**
+     * Methode realisant le plus court chemin entre un Sommet source et un Sommet target
+     * @param source Sommet de depart
+     * @param target Sommet d'arrivee
+     * @return Un vecteur du chemin des sommets
+     * @throws IllegalArgumentException Aucun chemin possible
+     */
+    public Vector<Sommet> BFSPath(Sommet source, Sommet target) throws IllegalArgumentException, ArithmeticException {
+        if(distance(source.getId(),target.getId()) < 0) throw new IllegalArgumentException("Aucun chemin possible");
+        for(int reset = 0; reset < this.taille; reset++) this.sommets.get(reset).resetChemin(); // reset des chemins les plus court
+        if(source.getId() > target.getId()){ // inversion des sommets si target.id < source.id
+            Sommet temp = source;
+            source = target;
+            target = temp;
+        }
+
+        GraphS bfs = new GraphS<S>(this.taille);
+        LinkedList<Sommet> l = new LinkedList<>();
+        l.add(source); // Depart de l'algorithme au sommet source (non fonctionnel dans certains cas) => entraine erreurs dans l'algo
+        this.sommets.get(0).setFlag(true);
+        LinkedList<Integer> alreadyPassed = new LinkedList<>();
+        while(l.size() != 0) {
+            Sommet sommetCourant = this.sommets.get(l.getFirst().getId());
+            for(int i = 0; i < sommetCourant.getVoisins().size(); i++){
+                Sommet voisinCourant = sommetCourant.getVoisins().get(i);
+                if(!alreadyPassed.contains(voisinCourant.getId())){ // eviter les parcours en boucle
+                    voisinCourant.addToChemin(sommetCourant); // ajout au chemin du sommet voisin le sommet courant
+                    for(int chems = 0; chems < sommetCourant.getChemin().size(); chems++){
+                        voisinCourant.addToChemin(sommetCourant.getChemin().get(chems)); // ajout au chemin du sommet voisin les sommets permettant d'acceder au sommet courant
+                    }
+                }
+                if(!voisinCourant.getFlag()){
+                    bfs.addArete(sommetCourant.getId(),voisinCourant.getId());
+                    voisinCourant.setFlag(true);
+                    l.add(voisinCourant);
+                }
+            }
+            l.remove();
+            alreadyPassed.add(sommetCourant.getId()); // ajout du sommet a la liste des sommets deja traites (eviter les parcours en boucle)
+        }
+        for(int j = 0; j < this.taille; j++) this.sommets.get(j).setFlag(false);
+        target.getChemin().add(0,target); // ajout du sommet cible dans le chemin
+        target.removeRedundancies(source); // suppression des redondances de chemin
+
+        if(target.getChemin().get(0).getId() != target.getId() && target.getChemin().get(target.getChemin().size()-1).getId() != source.getId()) throw new ArithmeticException("Erreur de l'algorithme");
+
+        return target.getChemin();
     }
 
     /**
