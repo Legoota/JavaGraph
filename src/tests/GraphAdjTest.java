@@ -8,14 +8,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de test de la classe GraphAdj
+ * Classe de test de GraphAdj
  */
 public class GraphAdjTest {
 
     private GraphAdj graphe;
 
     /**
-     * Initialisation de la matrice d'adjacence pour les tests
+     * Initialisation de la matrice d'adjacence pour les tests sur GraphAdj
      */
     @Before
     public void setUp() {

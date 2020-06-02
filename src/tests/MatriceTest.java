@@ -9,7 +9,7 @@ import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.*;
 
 /**
- * Classe de test de la classe Matrice
+ * Classe de test de Matrice
  */
 public class MatriceTest {
     private Matrice m;

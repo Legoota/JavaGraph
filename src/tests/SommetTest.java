@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de test de la classe Sommet
+ * Classe de test de Sommet
  */
 public class SommetTest {
 

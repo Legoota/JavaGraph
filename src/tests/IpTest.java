@@ -5,21 +5,34 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Classe de test de Ip
+ */
 public class IpTest {
 
     Ip ipTest1;
 
+    /**
+     * Initialisation d'une adresse IP de test
+     * @throws Exception IP non valide
+     */
     @Before
     public void setUp() throws Exception {
         ipTest1 = new Ip(192,168,0,254);
     }
 
+    /**
+     * Test de creation d'une adresse IP avec une valeur superieure a 255
+     */
     @Test (expected = IllegalArgumentException.class)
     public void createIpErrorHigher(){
         Ip ipError1 = new Ip(1,1,256,1);
         fail("Aurait du lancer IllegalArgumentException");
     }
 
+    /**
+     * Test de creation d'une adresse IP avec une valeur inferieure a 0
+     */
     @Test (expected = IllegalArgumentException.class)
     public void createIpErrorLower(){
         Ip ipError2 = new Ip(1,1,-12,1);
