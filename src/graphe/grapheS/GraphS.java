@@ -261,7 +261,7 @@ public class GraphS <S extends Sommet> implements Graphe {
         target.getChemin().add(0,target); // ajout du sommet cible dans le chemin
         target.removeRedundancies(source); // suppression des redondances de chemin
 
-        if(target.getChemin().get(0).getId() != target.getId() && target.getChemin().get(target.getChemin().size()-1).getId() != source.getId()) throw new ArithmeticException("Erreur de l'algorithme");
+        if(target.getChemin().size() > 1 && target.getChemin().get(0).getId() != target.getId() && target.getChemin().get(target.getChemin().size()-1).getId() != source.getId()) throw new ArithmeticException("Erreur de l'algorithme");
 
         return target.getChemin();
     }

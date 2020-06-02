@@ -131,12 +131,12 @@ public class Sommet {
     @Override
     public String toString() {
         String str = String.valueOf(id);
-        /*
+
         if(this.voisins.size()>0){
             str += ": [";
             for (int i = 0; i < voisins.size() - 1; i++) str += voisins.get(i).id + ", ";
             str += voisins.get(voisins.size()-1).id + "]";
-        }*/
+        }
         return str;
     }
 }
