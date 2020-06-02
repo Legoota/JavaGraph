@@ -11,13 +11,13 @@ import java.io.*;
 public class Import {
 
     /**
-     * Main permettant l'import d'un graphe au format JSON
+     * Main de test de l'import d'un graphe au format JSON
      * @param args Arguments du main
      */
     public static void main(String[] args){
         GraphS gs = null;
         try {
-            gs = Import.fetchGraphS("arctic.json");
+            gs = Import.fetchGraphS("arctic.json"); // test de l'import avec le fichier arctic.json
         } catch (FileNotFoundException e) { e.printStackTrace(); }
         System.out.println(gs.toString());
     }
@@ -31,7 +31,7 @@ public class Import {
     public static GraphS fetchGraphS(String path) throws FileNotFoundException{
         Gson gson = new Gson();
 
-        try (FileReader reader = new FileReader(path)) { //default: "arctic.json"
+        try (FileReader reader = new FileReader(path)) { // lecture du fichier
             GraphExport grex = gson.fromJson(reader, GraphExport.class);
 
             return grex.toGraphS();

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Export {
 
     /**
-     * Main permettant l'export au format JSON
+     * Main de test de l'export au format JSON
      * @param args Arguments du main
      */
     public static void main(String[] args){
@@ -33,10 +33,10 @@ public class Export {
      */
     public static void exportToJson(GraphS graphS, String nom){
         GraphExport grex = new GraphExport(graphS);
-        Gson gson = new Gson();
+        Gson gson = new Gson(); // objet permettant l'export en fichier JSON
 
         try (FileWriter writer = new FileWriter(nom+".json")) {
-            gson.toJson(grex, writer);
+            gson.toJson(grex, writer); // export du graphe
         } catch (IOException e) {
             e.printStackTrace();
         }

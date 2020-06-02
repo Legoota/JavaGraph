@@ -5,8 +5,8 @@ package json;
  */
 public class Node {
 
-    private String id;
-    private String label;
+    private String id; // ID du node
+    private String label; // label du node
 
     /**
      * Constructeur d'un Node

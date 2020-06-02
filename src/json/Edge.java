@@ -6,8 +6,8 @@ package json;
 public class Edge {
 
     private String id;
-    private String source;
-    private String target;
+    private String source; // node source
+    private String target; // node cible
 
     /**
      * Constructeur d'une arete
@@ -42,10 +42,9 @@ public class Edge {
      * @return La valeur int du sommet de la source
      */
     public int getSourceInt() {
-        if(this.target.substring(1).length()<1){
-            return Integer.valueOf(this.source);
-        }
-        return Integer.valueOf(this.source.substring(1));
+        return this.target.substring(1).length()<1 ?
+                Integer.valueOf(this.source) :
+                Integer.valueOf(this.source.substring(1));
     }
 
     /**
@@ -61,10 +60,9 @@ public class Edge {
      * @return La valeur int du sommet de la cible
      */
     public int getTargetInt() {
-        if(this.target.substring(1).length()<1){
-            return Integer.valueOf(this.target);
-        }
-        return Integer.valueOf(this.target.substring(1));
+        return this.target.substring(1).length()<1 ?
+                Integer.valueOf(this.target) :
+                Integer.valueOf(this.target.substring(1));
     }
 
     /**

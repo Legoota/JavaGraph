@@ -10,8 +10,8 @@ import java.util.Vector;
  */
 public class GraphExport <S extends Sommet>{
 
-    private Vector<Node> nodes;
-    private Vector<Edge> edges;
+    private Vector<Node> nodes; // liste des sommets
+    private Vector<Edge> edges; // liste des aretes
 
     /**
      * Constructeur de GraphExport
@@ -21,13 +21,13 @@ public class GraphExport <S extends Sommet>{
         this.nodes = new Vector<>();
         this.edges = new Vector<>();
         for(int i = 0; i < graphs.getTaille(); i++){
-            this.nodes.add(new Node(i,graphs.getSommets().get(i).getLabel()));
+            this.nodes.add(new Node(i,graphs.getSommets().get(i).getLabel())); // ajout des sommets
         }
 
-        int x = 0;
+        int x = 0; // id de l'arete
         for(int j = 0; j < graphs.getTaille(); j++){
             for(int k = 0; k < graphs.getSommets().get(j).getVoisins().size(); k++){
-                if(!alreadyExistingEdge(this.nodes.get(graphs.getSommets().get(j).getId()),this.nodes.get(graphs.getSommets().get(j).getVoisins().get(k).getId()))){
+                if(!alreadyExistingEdge(this.nodes.get(graphs.getSommets().get(j).getId()),this.nodes.get(graphs.getSommets().get(j).getVoisins().get(k).getId()))){ // ajout des aretes
                     this.edges.add(new Edge(x,this.nodes.get(graphs.getSommets().get(j).getId()),this.nodes.get(graphs.getSommets().get(j).getVoisins().get(k).getId())));
                     x++;
                 }
