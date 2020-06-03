@@ -14,8 +14,9 @@ using the Java language and graph theory.
 
 ###### TBA:
 * Use *Composite design pattern* to create a network of networks (network of routers)
-* Add ping method using network ip addresses
+* Refine ping method using network ip addresses
 * Refine shortest path algorithm (currently not working everytime)
+* Add threading on machine and router classes (send DHCP request every few minutes, ...)
 
 ###### Working:
 * Graph using adjacency matrices
@@ -32,6 +33,7 @@ using the Java language and graph theory.
 * Machines and networks logs
 * Machine to machine instant messaging
 * Shortest path algorithm (based on BFS)
+* Ping method between two machines
 
 ---
 ### Installation
