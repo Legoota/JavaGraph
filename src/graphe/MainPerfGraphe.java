@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 /**
  * Classe pour la comparaison des performances entre GraphAdj et GraphS
  */
-public class MainGraphe {
+public class MainPerfGraphe {
     /**
      * Main de tests des performances
      * @param args Arguments du main
@@ -41,17 +41,7 @@ public class MainGraphe {
         gs.addArete(4,7);
         gs.addArete(7,8);
 
-        GraphS arctic = null;
-        try {
-            arctic = Import.fetchGraphS("arctic.json");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        long startTimeArctic = System.currentTimeMillis();
-        arctic.DFS();
-        long finishTimeArctic = System.currentTimeMillis();
-        System.out.println("Fonction DFS pour Arctic = " + (finishTimeArctic - startTimeArctic) + " ms");
-
+        // Tests sur la distance
         long startTime1 = System.nanoTime();
         ga.distance(5,8);
         long finishTime1 = System.nanoTime();
@@ -62,16 +52,7 @@ public class MainGraphe {
         long finishTime2 = System.nanoTime();
         System.out.println("Calcul de distance 5 -> 8 (GraphS) = " + (finishTime2 - startTime2) + " ns");
 
-        long startTime3 = System.nanoTime();
-        gs.BFS();
-        long finishTime3 = System.nanoTime();
-        System.out.println("Fonction BFS pour GraphS = " + (finishTime3 - startTime3) + " ns");
-
-        long startTime4 = System.nanoTime();
-        gs.DFS();
-        long finishTime4 = System.nanoTime();
-        System.out.println("Fonction DFS pour GraphS = " + (finishTime4 - startTime4) + " ns");
-
+        // Tests sur la fonction isVoisin
         long startTime5 = System.nanoTime();
         ga.isVoisin(0,9);
         long finishTime5 = System.nanoTime();
