@@ -39,6 +39,33 @@ public class Reseau {
 
     /**
      * Constructeur de la classe Reseau
+     * @param taille La taille du reseau
+     * @param tailleRouteurs La taille de chaque routeur
+     * @param externe La premiere adresse IP externe des routeurs
+     * @param interne L'adresse IP interne des routeurs
+     * @param masque Le masque de chaque routeur
+     */
+    public Reseau(int taille, int tailleRouteurs, Ip externe, Ip interne, int masque){
+        this.taille = taille;
+        this.networks = new HashMap<>();
+        Ip exts = new Ip(0,0,0,0);
+        exts.setIp(externe);
+        int inc = 0;
+        while(inc < taille && exts.compareTo(new Ip(0,0,0,0)) > 0){
+            Ip ext = new Ip(1,1,1,0);
+            ext.setIp(exts);
+            this.networks.put(ext,new Routeur(inc,tailleRouteurs,ext,interne,masque));
+            inc++;
+            exts.increment();
+        }
+        if(inc < taille){
+            System.out.println("Plus d'adresses IP disponibles pour tous les routeurs");
+            throw new BadIpException(exts);
+        }
+    }
+
+    /**
+     * Constructeur de la classe Reseau
      * @param routeurs Le tableau de routeurs a ajouter au reseau
      */
     public Reseau(Routeur[] routeurs){
