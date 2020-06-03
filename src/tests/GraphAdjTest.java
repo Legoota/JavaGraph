@@ -38,7 +38,7 @@ public class GraphAdjTest {
     @Test (expected = IllegalArgumentException.class)
     public void isVoisinIndexNegatif() {
         graphe.isVoisin(-1, 1);
-        fail("Aurait du lancé IllegalArgumentExeption");
+        fail("Aurait du lancer IllegalArgumentExeption");
     }
 
     /**
@@ -74,7 +74,7 @@ public class GraphAdjTest {
     @Test (expected = IllegalArgumentException.class)
     public void distanceSommetInexistant() {
         graphe.distance(-1, 3);
-        fail("Aurait du lancé IllegalArgumentExeption");
+        fail("Aurait du lancer IllegalArgumentExeption");
     }
 
     /**
@@ -83,7 +83,7 @@ public class GraphAdjTest {
     @Test (expected = IndexOutOfBoundsException.class)
     public void distanceSommetNonRelies() {
         graphe.distance(7, 8);
-        fail("Aurait du lancé IndexOutOfBoundsException");
+        fail("Aurait du lancer IndexOutOfBoundsException");
     }
 
     /**

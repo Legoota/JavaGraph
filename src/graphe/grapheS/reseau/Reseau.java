@@ -93,6 +93,7 @@ public class Reseau {
     public void addRouteur(Routeur r) throws IllegalArgumentException {
         if(this.networks.containsKey(r.getExt())) throw new IllegalArgumentException("Adresse IP Ext deja attribuee dans le reseau, ajout impossible");
         this.networks.put(r.getExt(),r);
+        this.taille++;
     }
 
     /**
@@ -112,7 +113,12 @@ public class Reseau {
      * @return True si un routeur a ete supprime, false sinon
      */
     public boolean deleteRouteur(Ip ip){
-        return this.networks.remove(ip) != null;
+        boolean res = false;
+        if(this.networks.remove(ip) != null){
+            res = true;
+            this.taille--;
+        }
+        return res;
     }
 
     /**
