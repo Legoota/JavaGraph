@@ -191,4 +191,24 @@ public class GraphSTest {
         graphe.BFSPath(graphe.getSommetbyId(0),temp);
         fail("Aurait du lancer IllegalArgumentException");
     }
+
+    /**
+     * Test lancement d'erreur pour ajout de Sommet deja dans le graphe
+     */
+    @Test (expected = IllegalArgumentException.class)
+    public void ajoutSommetExistant() {
+        Sommet existant = new Sommet(0);
+        graphe.addSommet(existant);
+        fail("Aurait du lancer IllegalArgumentException");
+    }
+
+    /**
+     * Test ajout d'un sommet au graphe
+     */
+    @Test
+    public void ajoutSommetOk() {
+        Sommet ajouter = new Sommet(100);
+        graphe.addSommet(ajouter);
+        assertEquals(7,graphe.getTaille());
+    }
 }

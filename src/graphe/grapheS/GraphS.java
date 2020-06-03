@@ -187,7 +187,7 @@ public class GraphS <S extends Sommet> implements Graphe {
             l.remove();
             ldistance.remove();
         }
-
+        for(int y = 0; y < this.taille; y++) { this.sommets.get(y).setFlag(false); } // Reinitialisation du flag
         return -1; // Cas ou pas de chemin entre les sommets
     }
 

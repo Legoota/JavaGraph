@@ -58,6 +58,6 @@ public class MainPerfGraphS {
         long startTime3 = System.nanoTime();
         gs.BFSPath(gs.getSommetbyId(0),gs.getSommetbyId(8));
         long finishTime3 = System.nanoTime();
-        System.out.println("Fonction BFSPath entre sommet 0 et sommet 5 pour GraphS = " + (finishTime3 - startTime3) + " ns");
+        System.out.println("Fonction BFSPath entre sommet 0 et sommet 8 pour GraphS = " + (finishTime3 - startTime3) + " ns");
     }
 }
