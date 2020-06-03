@@ -235,6 +235,10 @@ public class Routeur extends GraphS<Machine> {
      * @return True si ping OK, false sinon
      */
     public boolean ping(Machine source, Machine dest){
+        /*
+        Il faudrait ici utiliser la fonction BFSPath pour les pings d'un reseau a un autre
+        Cependant nous ne l'avons pas implemente car elle ne fonctionne pas a tous les coup.
+         */
         return source.getReseau(this.masque).equals(dest.getReseau(this.masque));
     }
 
