@@ -39,15 +39,25 @@ public class MainPerfGraphS {
         long finishTimeArctic2 = System.currentTimeMillis();
         System.out.println("Fonction DFS pour Arctic = " + (finishTimeArctic2 - startTimeArctic2) + " ms");
 
-        // Tests sur les fonctions BFS et DFS
-        long startTime3 = System.nanoTime();
-        gs.BFS();
-        long finishTime3 = System.nanoTime();
-        System.out.println("Fonction BFS pour GraphS = " + (finishTime3 - startTime3) + " ns");
+        long startTimeArctic3 = System.currentTimeMillis();
+        arctic.deleteSommet(1);
+        long finishTimeAcrtic3 = System.currentTimeMillis();
+        System.out.println("Suppression du sommet 1 pour Arctic = " + (finishTimeAcrtic3 - startTimeArctic3) + " ms");
 
-        long startTime4 = System.nanoTime();
+        // Tests sur les fonctions BFS et DFS
+        long startTime1 = System.nanoTime();
+        gs.BFS();
+        long finishTime1 = System.nanoTime();
+        System.out.println("Fonction BFS pour GraphS = " + (finishTime1 - startTime1) + " ns");
+
+        long startTime2 = System.nanoTime();
         gs.DFS();
-        long finishTime4 = System.nanoTime();
-        System.out.println("Fonction DFS pour GraphS = " + (finishTime4 - startTime4) + " ns");
+        long finishTime2 = System.nanoTime();
+        System.out.println("Fonction DFS pour GraphS = " + (finishTime2 - startTime2) + " ns");
+
+        long startTime3 = System.nanoTime();
+        gs.BFSPath(gs.getSommetbyId(0),gs.getSommetbyId(8));
+        long finishTime3 = System.nanoTime();
+        System.out.println("Fonction BFSPath entre sommet 0 et sommet 5 pour GraphS = " + (finishTime3 - startTime3) + " ns");
     }
 }
