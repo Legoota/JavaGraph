@@ -108,6 +108,19 @@ public class Machine extends Sommet {
     }
 
     /**
+     * Methode permettant de receptionner un message et de l'ajouter a la liste des messages
+     * @param message Le message
+     * @param expediteur L'expediteur du message
+     */
+    public void getMessage(String message, Ip expediteur) {
+        if (!this.messages.containsKey(expediteur)) {
+            this.messages.put(expediteur, new ArrayList<>());
+            this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Ajout d'une nouvelle conversation avec l'adresse IP "+expediteur.toString());
+        }
+        this.messages.get(expediteur).add(message);
+    }
+
+    /**
      * Getter de l'ArrayList de messages de la machine d'adresse IP ip
      * @param ip L'adresse IP de la machine expediteur
      * @return L'ArrayList des messages de la machine IP
@@ -125,19 +138,6 @@ public class Machine extends Sommet {
      */
     public boolean sendMessage(String message, Ip destinataire, Routeur r) {
         return r.message(message, this.myip, destinataire);
-    }
-
-    /**
-     * Methode permettant de receptionner un message et de l'ajouter a la liste des messages
-     * @param message Le message
-     * @param expediteur L'expediteur du message
-     */
-    public void getMessage(String message, Ip expediteur) {
-        if (!this.messages.containsKey(expediteur)) {
-            this.messages.put(expediteur, new ArrayList<>());
-            this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Ajout d'une nouvelle conversation avec l'adresse IP "+expediteur.toString());
-        }
-        this.messages.get(expediteur).add(message);
     }
 
     /**
