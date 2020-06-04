@@ -214,18 +214,20 @@ public class Routeur extends GraphS<Machine> {
      * Methode supprimant une machine du reseau
      * @param m La machine a supprimer
      */
-    public void deleteMachine(Machine m){
-        this.deleteSommet(m);
+    public boolean deleteMachine(Machine m){
+        boolean res = this.deleteSommet(m);
         this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())+" : Suppression machine "+m.getId());
+        return res;
     }
 
     /**
      * Methode supprimant une machine du reseau par son id
      * @param id Id de la machine a supprimer
      */
-    public void deleteMachine(int id){
-        this.deleteSommet(id);
+    public boolean deleteMachine(int id){
+        boolean res = this.deleteSommet(id);
         this.logs.add(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()) + " : Suppression machine " + id);
+        return res;
     }
 
     /**
