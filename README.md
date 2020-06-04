@@ -61,5 +61,5 @@ Tools needed : [Node.js](https://nodejs.org/en/), [gjslint](https://developers.g
 * [Sigma.js](https://github.com/jacomyal/sigma.js)
 
 ---
-###UML diagram
+### UML diagram
 ![alt text](https://github.com/Legoota/JavaGraph/blob/master/UML.png?raw=true)
