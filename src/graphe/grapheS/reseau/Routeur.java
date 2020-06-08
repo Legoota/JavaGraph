@@ -213,6 +213,7 @@ public class Routeur extends GraphS<Machine> {
     /**
      * Methode supprimant une machine du reseau
      * @param m La machine a supprimer
+     * @return True si la machine a ete supprimee, false sinon
      */
     public boolean deleteMachine(Machine m){
         boolean res = this.deleteSommet(m);
@@ -223,6 +224,7 @@ public class Routeur extends GraphS<Machine> {
     /**
      * Methode supprimant une machine du reseau par son id
      * @param id Id de la machine a supprimer
+     * @return True si la machine a ete supprimee, false sinon
      */
     public boolean deleteMachine(int id){
         boolean res = this.deleteSommet(id);
