@@ -4,8 +4,15 @@ import json.Import;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Classe de tests de performances de la classe GraphS
+ */
 public class MainPerfGraphS {
 
+    /**
+     * Main de tests de performances de la classe GraphS
+     * @param args Arguments du main
+     */
     public static void main(String[] args) {
         GraphS gs = new GraphS(10);
         gs.addArete(0,1);

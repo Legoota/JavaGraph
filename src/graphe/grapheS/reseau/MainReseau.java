@@ -1,7 +1,14 @@
 package graphe.grapheS.reseau;
 
+/**
+ * Classe de test de la classe Reseau
+ */
 public class MainReseau {
 
+    /**
+     * Main de test de la classe Reseau
+     * @param args Arguments du main
+     */
     public static void main(String[] args){
 
         Reseau r = new Reseau(10,5);

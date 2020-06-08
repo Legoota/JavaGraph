@@ -1,10 +1,14 @@
 package graphe.grapheS.reseau;
 
-import exceptions.BadSizeGrapheException;
-import graphe.grapheS.GraphS;
-
+/**
+ * Classe de test de performances de la classe routeur
+ */
 public class MainPerfRouteur {
 
+    /**
+     * Main de tests de performances de la classe routeur
+     * @param args Arguments du main
+     */
     public static void main(String[] args){
         Routeur R = new Routeur(1,10,new Ip(1,1,1,1),new Ip(192,168,1,1),5);
         Machine m = new Machine(15,Machine.Type.PC);
