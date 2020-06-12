@@ -17,6 +17,7 @@ using the Java language and graph theory.
 * Refine ping method using network ip addresses
 * Refine shortest path algorithm (currently not working everytime)
 * Add threading on machine and router classes (send DHCP request every few minutes, ...)
+* Graphic interface (JavaFX, ...)
 
 ###### Working:
 * Graph using adjacency matrices

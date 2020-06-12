@@ -90,7 +90,7 @@ public class Ip implements Comparable<Ip>{
     /**
      * Methode equals
      * @param o Objet a comparer avec l'instance courante
-     * @return <b>True</b> si les deux objets ont la même ip, <b>False</b> sinon
+     * @return <b>True</b> si les deux objets ont la meme ip, <b>False</b> sinon
      */
     @Override
     public boolean equals(Object o){
