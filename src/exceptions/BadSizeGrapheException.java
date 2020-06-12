@@ -4,6 +4,7 @@ package exceptions;
  * Classe exception quand un graphe n'a pas les bonnes dimensions.
  */
 public class BadSizeGrapheException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
 
     int size;
 

@@ -12,8 +12,9 @@ public class Matrice {
     /**
      * Initialise la matrice avec des valeurs aleatoires entre 0 et 9.
      * @param ordre Dimension de la matrice.
+     * @throws BadSizeGrapheException taille non valide (negative)
      */
-    public Matrice(int ordre){
+    public Matrice(int ordre) throws BadSizeGrapheException{
         if(ordre< 0) throw new BadSizeGrapheException(ordre);
         this.ordre = ordre;
         this.A = new int[ordre][ordre];
@@ -47,10 +48,11 @@ public class Matrice {
      * @param l Position par rapport au premier parametre.
      * @param h Position par rapport au second parametre.
      * @return Valeur souhaitee.
+     * @throws IllegalArgumentException taille non valide (negative)
      */
     public int get(int l, int h) throws IllegalArgumentException {
         if(0 <= l && 0 <= h && l < this.ordre && h < this.ordre) return this.A[l][h];
-        else throw new IllegalArgumentException(" Position impossible");
+        else throw new IllegalArgumentException("Position impossible");
     }
 
     /**
@@ -58,15 +60,17 @@ public class Matrice {
      * @param l Position par rapport au premier parametre.
      * @param h Position par rapport au second parametre.
      * @param v Valeur positionnelle en (l,h).
+     * @throws IllegalArgumentException taille non valide (negative)
      */
     public void set(int l,int h, int v) throws IllegalArgumentException {
         if(0 <= l && 0 <= h && l < this.ordre && h < this.ordre) this.A[l][h] = v;
-        else throw new IllegalArgumentException(" Position impossible");
+        else throw new IllegalArgumentException("Position impossible");
     }
 
     /**
      * @return Une chaine de caractere representant la matrice.
      */
+    @Override
     public String toString(){
         String str = "";
         for (int i = 0;i < this.ordre;i++){
@@ -96,9 +100,7 @@ public class Matrice {
         if (this.ordre != M.ordre) b = false;
         else {
             for (int i = 0;i < this.ordre;i++){
-                for (int j = 0;j < this.ordre;j++){
-                    if(this.A[i][j] != M.get(i,j)) b=false;
-                }
+                for (int j = 0;j < this.ordre;j++) if(this.A[i][j] != M.get(i,j)) b=false;
             }
         }
         return b;

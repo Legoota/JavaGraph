@@ -9,8 +9,8 @@ public interface Graphe {
      * Fonction permettant de voir si deux sommets sont voisins.
      * @param i Le premier sommet a tester.
      * @param j Le deuxieme sommet a tester.
-     * @throws IllegalArgumentException Sommet non valide
      * @return <b>True</b> si les deux sommets sont voisins, <b>False</b> sinon.
+     * @throws IllegalArgumentException Sommet non valide
      */
     boolean isVoisin(int i, int j);
 
@@ -21,5 +21,4 @@ public interface Graphe {
      * @return La distance entre le premier sommet et le deuxieme sommet
      */
     int distance(int i, int j);
-
 }

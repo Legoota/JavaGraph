@@ -25,17 +25,13 @@ public class Edge {
      * Getter de l'id de l'arete
      * @return L'id de l'arete
      */
-    public String getId() {
-        return this.id;
-    }
+    public String getId() { return this.id; }
 
     /**
      * Getter de l'id du sommet de la source
      * @return L'id du sommet de la source
      */
-    public String getSource() {
-        return this.source;
-    }
+    public String getSource() { return this.source; }
 
     /**
      * Getter de la valeur du sommet de la source
@@ -51,9 +47,7 @@ public class Edge {
      * Getter de l'id du sommet de la cible
      * @return L'id du sommet de la cible
      */
-    public String getTarget() {
-        return this.target;
-    }
+    public String getTarget() { return this.target; }
 
     /**
      * Getter de la valeur du sommet de la cible
@@ -69,7 +63,7 @@ public class Edge {
      * Methode permettant de savoir si l'arete existe deja (pour eviter les redondances)
      * @param a Le premier sommet
      * @param b Le deuxieme sommet
-     * @return True si l'arete existe deja, false sinon
+     * @return <b>True</b> si l'arete existe deja, <b>False</b> sinon
      */
     public boolean alreadyExisting(Node a, Node b){
         return ((a.getId() == this.source && b.getId() == this.target) || (b.getId() == this.source && a.getId() == this.target));

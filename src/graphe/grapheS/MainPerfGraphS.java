@@ -47,7 +47,7 @@ public class MainPerfGraphS {
         System.out.println("Fonction DFS pour Arctic = " + (finishTimeArctic2 - startTimeArctic2) + " ms");
 
         long startTimeArctic3 = System.currentTimeMillis();
-        arctic.deleteSommet(1);
+        arctic.deleteSommet(1); // Sommet 1 possede beaucoup de voisins
         long finishTimeAcrtic3 = System.currentTimeMillis();
         System.out.println("Suppression du sommet 1 pour Arctic = " + (finishTimeAcrtic3 - startTimeArctic3) + " ms");
 

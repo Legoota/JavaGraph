@@ -14,15 +14,15 @@ public class MainPerfRouteur {
         Machine m = new Machine(15,Machine.Type.PC);
         Machine m2 = new Machine(20,Machine.Type.PC);
 
-        long startTime1 = System.nanoTime();
+        long startTime1 = System.currentTimeMillis();
         R.DHCP();
-        long finishTime1 = System.nanoTime();
-        System.out.println("Execution de la methode DHCP : " + (finishTime1 - startTime1) + " ns");
+        long finishTime1 = System.currentTimeMillis();
+        System.out.println("Execution de la methode DHCP : " + (finishTime1 - startTime1) + " ms");
 
-        long startTime2 = System.nanoTime();
+        long startTime2 = System.currentTimeMillis();
         R.addMachine(m);
-        long finishTime2 = System.nanoTime();
-        System.out.println("Temps d'ajout de la machine m au reseau : " + (finishTime2 - startTime2) + " ns");
+        long finishTime2 = System.currentTimeMillis();
+        System.out.println("Temps d'ajout de la machine m au reseau : " + (finishTime2 - startTime2) + " ms");
 
         R.addMachine(m2);//ajout seconde machine
 
@@ -31,12 +31,10 @@ public class MainPerfRouteur {
         long finishTime3 = System.nanoTime();
         System.out.println("Temps d'envoi d'un message entre m et m2 : " + (finishTime3 - startTime3) + " ns");
 
-        long startTime4 = System.nanoTime();
+        long startTime4 = System.currentTimeMillis();
         m.DHCPM(R);
-        long finishTime4 = System.nanoTime();
-        System.out.println("Execution de la methode DHCPM sur la machine m : " + (finishTime4 - startTime4) + " ns");
-
-
+        long finishTime4 = System.currentTimeMillis();
+        System.out.println("Execution de la methode DHCPM sur la machine m : " + (finishTime4 - startTime4) + " ms");
 
     }
 }

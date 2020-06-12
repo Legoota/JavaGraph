@@ -112,33 +112,25 @@ public class Routeur extends GraphS<Machine> {
      * Getter de l'IP du reseau
      * @return IP du reseau
      */
-    public Ip getReseau() {
-        return this.reseau;
-    }
+    public Ip getReseau() { return this.reseau; }
 
     /**
      * Getter de l'IP externe du routeur
      * @return IP externe du routeur
      */
-    public Ip getExt() {
-        return this.ext;
-    }
+    public Ip getExt() { return this.ext; }
 
     /**
      * Getter de l'IP de broadcast du reseau du routeur
      * @return IP de broadcast du reseau du routeur
      */
-    public Ip getBroadcast() {
-        return this.broadcast;
-    }
+    public Ip getBroadcast() { return this.broadcast; }
 
     /**
      * Getter de l'IP du masque du reseau du routeur
      * @return IP du masque du reseau du routeur
      */
-    public Ip getMasque() {
-        return this.masque;
-    }
+    public Ip getMasque() { return this.masque; }
 
     /**
      * Methode simulant un serveur DHCP qui attribue des adresses en fonction de l'ID des machines

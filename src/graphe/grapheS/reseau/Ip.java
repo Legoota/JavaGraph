@@ -13,6 +13,7 @@ public class Ip implements Comparable<Ip>{
      * @param B 2eme octet
      * @param C 3eme octet
      * @param D 4eme octet
+     * @throws IllegalArgumentException Les octets sont négatifs
      */
     public Ip(int A, int B, int C, int D) throws IllegalArgumentException {
         if(A < 0 || B < 0 || C < 0 || D < 0 || A > 255 || B > 255 || C > 255 || D > 255) throw new IllegalArgumentException("Les octets de l'adresse ip ne peuvent pas etre negatifs ni superieurs a 255 !");
@@ -89,7 +90,7 @@ public class Ip implements Comparable<Ip>{
     /**
      * Methode equals
      * @param o Objet a comparer avec l'instance courante
-     * @return true si les deux objets ont la même ip, false sinon
+     * @return <b>True</b> si les deux objets ont la même ip, <b>False</b> sinon
      */
     @Override
     public boolean equals(Object o){
@@ -104,7 +105,7 @@ public class Ip implements Comparable<Ip>{
     /**
      * Methode qui implemente l'interface comparable
      * @param o Adresse ip
-     * @return 0 si egale, 1 si superieur, -1 si inferieur
+     * @return <b>0</b> si egale, <b>1</b> si superieur, <b>-1</b> si inferieur
      */
     @Override
     public int compareTo(Ip o) {
@@ -135,9 +136,7 @@ public class Ip implements Comparable<Ip>{
                 else{
                     this.B=0;
                     if(this.A < 255) this.A++;
-                    else{
-                        this.A=0;
-                    }
+                    else this.A=0;
                 }
             }
         }

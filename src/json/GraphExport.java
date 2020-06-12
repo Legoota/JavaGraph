@@ -49,7 +49,7 @@ public class GraphExport <S extends Sommet>{
      * Methode permettant de savoir si l'arete est deja dans la liste edges
      * @param a Premier sommet
      * @param b Deuxieme sommet
-     * @return True si l'arete est deja presente, false sinon
+     * @return <b>True</b> si l'arete est deja presente, <b>False</b> sinon
      */
     private boolean alreadyExistingEdge(Node a, Node b){
         boolean res = false;
@@ -65,17 +65,13 @@ public class GraphExport <S extends Sommet>{
      * Getter du vecteur des aretes
      * @return Vecteur des aretes
      */
-    public Vector<Edge> getEdges() {
-        return this.edges;
-    }
+    public Vector<Edge> getEdges() { return this.edges; }
 
     /**
      * Getter du vecteur des sommets
      * @return Vecteur des sommets
      */
-    public Vector<Node> getNodes() {
-        return this.nodes;
-    }
+    public Vector<Node> getNodes() { return this.nodes; }
 
     /**
      * Methode d'affichage du GraphExport

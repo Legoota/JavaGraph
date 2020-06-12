@@ -57,7 +57,7 @@ public class GraphS <S extends Sommet> implements Graphe {
     /**
      * Methode supprimant un sommet de la liste de sommets
      * @param sommet Le sommet a supprimer
-     * @return True si supprime, False sinon
+     * @return <b>True</b> si supprime, <b>False</b> sinon
      */
     public boolean deleteSommet(S sommet){
         if(this.sommets.remove(sommet)) {
@@ -73,7 +73,7 @@ public class GraphS <S extends Sommet> implements Graphe {
     /**
      * Methode supprimant un sommet de la liste par son id
      * @param id L'id du sommet a supprimer
-     * @return True si supprime, False sinon
+     * @return <b>True</b> si supprime, <b>False</b> sinon
      */
     public boolean deleteSommet(int id){
         for(Sommet s: this.sommets){
@@ -90,7 +90,7 @@ public class GraphS <S extends Sommet> implements Graphe {
      * Methode supprimant une arete entre deux sommets
      * @param i Le premier sommet
      * @param j Le second sommet
-     * @return True si une arete a ete supprimee, false sinon
+     * @return <b>True</b> si une arete a ete supprimee, <b>False</b> sinon
      */
     public boolean deleteArete(Sommet i, Sommet j){
         boolean res, res2;
@@ -103,7 +103,7 @@ public class GraphS <S extends Sommet> implements Graphe {
      * Methode supprimant une arete entre deux sommets
      * @param i Id du premier sommet
      * @param j Id du deuxieme sommet
-     * @return True si une arete a ete supprimee, false sinon
+     * @return <b>True</b> si une arete a ete supprimee, <b>False</b> sinon
      * @throws IllegalArgumentException Un des sommets est negatif
      */
     public boolean deleteArete(int i, int j) throws IllegalArgumentException {
@@ -266,7 +266,7 @@ public class GraphS <S extends Sommet> implements Graphe {
     }
 
     /**
-     * Methode realisant un graph DFS a partie d'un graphS
+     * Methode realisant un graph DFS a partir d'un graphS
      * @return Un graphe DFS
      */
     public GraphS DFS() {

@@ -134,7 +134,7 @@ public class Machine extends Sommet {
      * @param message Le message
      * @param destinataire Le destinataire du message
      * @param r Le routeur cible
-     * @return True si le message a ete transmis, false sinon
+     * @return <b>True</b> si le message a ete transmis, <b>False</b> sinon
      */
     public boolean sendMessage(String message, Ip destinataire, Routeur r) {
         return r.message(message, this.myip, destinataire);

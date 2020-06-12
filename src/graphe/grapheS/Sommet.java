@@ -42,6 +42,7 @@ public class Sommet {
      * @param s Le sommet a ajouter
      */
     public void addToChemin(Sommet s){
+        // if(this.chemin.contains(s) throw new IllegalArgumentException();
         this.chemin.add(s);
     }
 

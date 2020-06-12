@@ -81,44 +81,17 @@ public class Reseau {
      * Getter de la taille du reseau
      * @return La taille du reseau
      */
-    public int getTaille() {
-        return this.taille;
-    }
-
-    /**
-     * Methode permettant l'ajout d'un routeur au reseau
-     * @param r Le routeur a ajouter
-     * @throws IllegalArgumentException Adresse IP Ext deja presente dans le reseau
-     */
-    public void addRouteur(Routeur r) throws IllegalArgumentException {
-        if(this.networks.containsKey(r.getExt())) throw new IllegalArgumentException("Adresse IP Ext deja attribuee dans le reseau, ajout impossible");
-        this.networks.put(r.getExt(),r);
-        this.taille++;
-    }
+    public int getTaille() { return this.taille; }
 
     /**
      * Methode permettant d'obtenir le routeur possedant l'adresse IP donnee en parametre
-     * @param ip L'adresse IP du routeur
+     * @param ip L'adresse IP externe du routeur
      * @return Le routeur
      * @throws IllegalArgumentException Aucun routeur trouve pour cette adresse IP
      */
     public Routeur getRouteurFromIp(Ip ip) throws IllegalArgumentException {
         if(!this.networks.containsKey(ip)) throw new IllegalArgumentException("Pas de routeur possedant cette adresse IP");
         return this.networks.get(ip);
-    }
-
-    /**
-     * Methode supprimant un routeur du reseau
-     * @param ip L'IP externe du routeur
-     * @return True si un routeur a ete supprime, false sinon
-     */
-    public boolean deleteRouteur(Ip ip){
-        boolean res = false;
-        if(this.networks.remove(ip) != null){
-            res = true;
-            this.taille--;
-        }
-        return res;
     }
 
     /**
@@ -133,6 +106,31 @@ public class Reseau {
                 .findFirst().orElse(null);
         if(res == null) throw new IllegalArgumentException("Pas de Routeur d'id "+id);
         return res.getValue();
+    }
+
+    /**
+     * Methode permettant l'ajout d'un routeur au reseau
+     * @param r Le routeur a ajouter
+     * @throws IllegalArgumentException Adresse IP Ext deja presente dans le reseau
+     */
+    public void addRouteur(Routeur r) throws IllegalArgumentException {
+        if(this.networks.containsKey(r.getExt())) throw new IllegalArgumentException("Adresse IP Ext deja attribuee dans le reseau, ajout impossible");
+        this.networks.put(r.getExt(),r);
+        this.taille++;
+    }
+
+    /**
+     * Methode supprimant un routeur du reseau
+     * @param ip L'IP externe du routeur
+     * @return <b>True</b> si un routeur a ete supprime, <b>False</b> sinon
+     */
+    public boolean deleteRouteur(Ip ip){
+        boolean res = false;
+        if(this.networks.remove(ip) != null){
+            res = true;
+            this.taille--;
+        }
+        return res;
     }
 
     /**

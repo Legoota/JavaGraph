@@ -26,7 +26,5 @@ public class Node {
      * Getter de l'id du Node
      * @return L'id du Node
      */
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 }
